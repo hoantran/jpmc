@@ -28,7 +28,7 @@
 @property (nonatomic) NSString <Optional>   *launch_success;
 @property (nonatomic) NSString <Ignore>     *links;
 @property (nonatomic) NSString <Optional>   *details;
-@property (nonatomic) NSString <Optional>   *upcoming;
+@property (nonatomic) BOOL    upcoming;
 @end
 
 #endif /* LaunchModel_h */

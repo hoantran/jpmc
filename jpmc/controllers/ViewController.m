@@ -26,6 +26,7 @@ RestService *svr;
     [svr get:@"https://api.spacexdata.com/v2/launches/all" success:^(NSData * _Nonnull data) {
         NSError* err = nil;
         self.launches = [LaunchModel arrayOfModelsFromData:data error:&err];
+        NSLog(@"ok");
     }];
 }
 
