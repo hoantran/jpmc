@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B50145A211704DA000011CE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7553B121163787008655FB /* ViewController.m */; };
+		3B50145C21170520000011CE /* LaunchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B50145B21170520000011CE /* LaunchModel.m */; };
+		3B50145D2117053B000011CE /* LaunchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B50145B21170520000011CE /* LaunchModel.m */; };
+		3B50145F2117057C000011CE /* LaunchSiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B50145E2117057C000011CE /* LaunchSiteModel.m */; };
+		3B501461211705CE000011CE /* LaunchSiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B50145E2117057C000011CE /* LaunchSiteModel.m */; };
+		3B648A8B2116FF7100A29760 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 3B648A8A2116FF7100A29760 /* Podfile */; };
 		3B7553AF21163787008655FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7553AE21163787008655FB /* AppDelegate.m */; };
 		3B7553B221163787008655FB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7553B121163787008655FB /* ViewController.m */; };
 		3B7553B721163788008655FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B7553B621163788008655FB /* Assets.xcassets */; };
@@ -14,6 +20,8 @@
 		3B7553BD21163788008655FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7553BC21163788008655FB /* main.m */; };
 		3B7553C721163788008655FB /* jpmcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7553C621163788008655FB /* jpmcTests.m */; };
 		3BFA278B211687F10008062B /* RestService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA278A211687F10008062B /* RestService.m */; };
+		C75DF896E8A35EE5F7EC61F8 /* libPods-jpmcTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 180A137E0D4F7950C52D6893 /* libPods-jpmcTests.a */; };
+		FA159B79C9BD43627EF884AF /* libPods-jpmc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7F9934438FEA0767D49F01 /* libPods-jpmc.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +35,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		051896A616E9525982E26B7E /* Pods-jpmc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jpmc.release.xcconfig"; path = "Pods/Target Support Files/Pods-jpmc/Pods-jpmc.release.xcconfig"; sourceTree = "<group>"; };
+		06EC6114C6375AE2EDE03A1C /* Pods-jpmcTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jpmcTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jpmcTests/Pods-jpmcTests.debug.xcconfig"; sourceTree = "<group>"; };
+		180A137E0D4F7950C52D6893 /* libPods-jpmcTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jpmcTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B7F9934438FEA0767D49F01 /* libPods-jpmc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jpmc.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B50145B21170520000011CE /* LaunchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchModel.m; sourceTree = "<group>"; };
+		3B50145E2117057C000011CE /* LaunchSiteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchSiteModel.m; sourceTree = "<group>"; };
+		3B5014602117059D000011CE /* LaunchSiteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchSiteModel.h; sourceTree = "<group>"; };
+		3B648A8A2116FF7100A29760 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3B7553AA21163787008655FB /* jpmc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jpmc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B7553AD21163787008655FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3B7553AE21163787008655FB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -39,8 +55,11 @@
 		3B7553C221163788008655FB /* jpmcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jpmcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B7553C621163788008655FB /* jpmcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = jpmcTests.m; sourceTree = "<group>"; };
 		3B7553C821163788008655FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BC3D1DA2117007100DA59E0 /* LaunchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchModel.h; sourceTree = "<group>"; };
 		3BFA2789211687F10008062B /* RestService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestService.h; sourceTree = "<group>"; };
 		3BFA278A211687F10008062B /* RestService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestService.m; sourceTree = "<group>"; };
+		9E0D9C73B75A0E648632BA7F /* Pods-jpmcTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jpmcTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-jpmcTests/Pods-jpmcTests.release.xcconfig"; sourceTree = "<group>"; };
+		D8191B1205981C121AAAC1DA /* Pods-jpmc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jpmc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jpmc/Pods-jpmc.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA159B79C9BD43627EF884AF /* libPods-jpmc.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,18 +75,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C75DF896E8A35EE5F7EC61F8 /* libPods-jpmcTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B50146221170A1A000011CE /* models */ = {
+			isa = PBXGroup;
+			children = (
+				3BC3D1DA2117007100DA59E0 /* LaunchModel.h */,
+				3B50145B21170520000011CE /* LaunchModel.m */,
+				3B5014602117059D000011CE /* LaunchSiteModel.h */,
+				3B50145E2117057C000011CE /* LaunchSiteModel.m */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		3B7553A121163787008655FB = {
 			isa = PBXGroup;
 			children = (
+				3B648A8A2116FF7100A29760 /* Podfile */,
 				3B7553AC21163787008655FB /* jpmc */,
 				3B7553C521163788008655FB /* jpmcTests */,
 				3B7553AB21163787008655FB /* Products */,
+				411F9A0185778A5C389ED4E9 /* Pods */,
+				7A6340ACAEE2803CF304A945 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,9 +117,8 @@
 		3B7553AC21163787008655FB /* jpmc */ = {
 			isa = PBXGroup;
 			children = (
-				3BFA27862116843F0008062B /* libraries */,
+				3B50146221170A1A000011CE /* models */,
 				3BFA2785211684350008062B /* controllers */,
-				3BFA27842116842D0008062B /* models */,
 				3BFA27832116841A0008062B /* utils */,
 				3B7553AD21163787008655FB /* AppDelegate.h */,
 				3B7553AE21163787008655FB /* AppDelegate.m */,
@@ -114,13 +148,6 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
-		3BFA27842116842D0008062B /* models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = models;
-			sourceTree = "<group>";
-		};
 		3BFA2785211684350008062B /* controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,11 +157,24 @@
 			path = controllers;
 			sourceTree = "<group>";
 		};
-		3BFA27862116843F0008062B /* libraries */ = {
+		411F9A0185778A5C389ED4E9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				D8191B1205981C121AAAC1DA /* Pods-jpmc.debug.xcconfig */,
+				051896A616E9525982E26B7E /* Pods-jpmc.release.xcconfig */,
+				06EC6114C6375AE2EDE03A1C /* Pods-jpmcTests.debug.xcconfig */,
+				9E0D9C73B75A0E648632BA7F /* Pods-jpmcTests.release.xcconfig */,
 			);
-			path = libraries;
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7A6340ACAEE2803CF304A945 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1B7F9934438FEA0767D49F01 /* libPods-jpmc.a */,
+				180A137E0D4F7950C52D6893 /* libPods-jpmcTests.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +184,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B7553CB21163788008655FB /* Build configuration list for PBXNativeTarget "jpmc" */;
 			buildPhases = (
+				542E19E775E08B18924A818A /* [CP] Check Pods Manifest.lock */,
 				3B7553A621163787008655FB /* Sources */,
 				3B7553A721163787008655FB /* Frameworks */,
 				3B7553A821163787008655FB /* Resources */,
@@ -161,6 +202,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B7553CE21163788008655FB /* Build configuration list for PBXNativeTarget "jpmcTests" */;
 			buildPhases = (
+				2CCB357C02DA3EC8B35A7205 /* [CP] Check Pods Manifest.lock */,
 				3B7553BE21163788008655FB /* Sources */,
 				3B7553BF21163788008655FB /* Frameworks */,
 				3B7553C021163788008655FB /* Resources */,
@@ -217,6 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B648A8B2116FF7100A29760 /* Podfile in Resources */,
 				3B7553BA21163788008655FB /* LaunchScreen.storyboard in Resources */,
 				3B7553B721163788008655FB /* Assets.xcassets in Resources */,
 			);
@@ -231,14 +274,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2CCB357C02DA3EC8B35A7205 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-jpmcTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		542E19E775E08B18924A818A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-jpmc-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3B7553A621163787008655FB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3B7553B221163787008655FB /* ViewController.m in Sources */,
+				3B50145F2117057C000011CE /* LaunchSiteModel.m in Sources */,
 				3B7553BD21163788008655FB /* main.m in Sources */,
 				3B7553AF21163787008655FB /* AppDelegate.m in Sources */,
+				3B50145C21170520000011CE /* LaunchModel.m in Sources */,
 				3BFA278B211687F10008062B /* RestService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,6 +331,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B50145D2117053B000011CE /* LaunchModel.m in Sources */,
+				3B501461211705CE000011CE /* LaunchSiteModel.m in Sources */,
+				3B50145A211704DA000011CE /* ViewController.m in Sources */,
 				3B7553C721163788008655FB /* jpmcTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,6 +474,7 @@
 		};
 		3B7553CC21163788008655FB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8191B1205981C121AAAC1DA /* Pods-jpmc.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -405,6 +493,7 @@
 		};
 		3B7553CD21163788008655FB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 051896A616E9525982E26B7E /* Pods-jpmc.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -423,6 +512,7 @@
 		};
 		3B7553CF21163788008655FB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06EC6114C6375AE2EDE03A1C /* Pods-jpmcTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -442,6 +532,7 @@
 		};
 		3B7553D021163788008655FB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E0D9C73B75A0E648632BA7F /* Pods-jpmcTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
