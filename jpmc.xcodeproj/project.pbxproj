@@ -13,6 +13,7 @@
 		3B7553BA21163788008655FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B7553B821163788008655FB /* LaunchScreen.storyboard */; };
 		3B7553BD21163788008655FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7553BC21163788008655FB /* main.m */; };
 		3B7553C721163788008655FB /* jpmcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7553C621163788008655FB /* jpmcTests.m */; };
+		3BFA278B211687F10008062B /* RestService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA278A211687F10008062B /* RestService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,8 @@
 		3B7553C221163788008655FB /* jpmcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jpmcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B7553C621163788008655FB /* jpmcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = jpmcTests.m; sourceTree = "<group>"; };
 		3B7553C821163788008655FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BFA2789211687F10008062B /* RestService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestService.h; sourceTree = "<group>"; };
+		3BFA278A211687F10008062B /* RestService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,10 +82,12 @@
 		3B7553AC21163787008655FB /* jpmc */ = {
 			isa = PBXGroup;
 			children = (
+				3BFA27862116843F0008062B /* libraries */,
+				3BFA2785211684350008062B /* controllers */,
+				3BFA27842116842D0008062B /* models */,
+				3BFA27832116841A0008062B /* utils */,
 				3B7553AD21163787008655FB /* AppDelegate.h */,
 				3B7553AE21163787008655FB /* AppDelegate.m */,
-				3B7553B021163787008655FB /* ViewController.h */,
-				3B7553B121163787008655FB /* ViewController.m */,
 				3B7553B621163788008655FB /* Assets.xcassets */,
 				3B7553B821163788008655FB /* LaunchScreen.storyboard */,
 				3B7553BB21163788008655FB /* Info.plist */,
@@ -98,6 +103,38 @@
 				3B7553C821163788008655FB /* Info.plist */,
 			);
 			path = jpmcTests;
+			sourceTree = "<group>";
+		};
+		3BFA27832116841A0008062B /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				3BFA2789211687F10008062B /* RestService.h */,
+				3BFA278A211687F10008062B /* RestService.m */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		3BFA27842116842D0008062B /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		3BFA2785211684350008062B /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3B7553B021163787008655FB /* ViewController.h */,
+				3B7553B121163787008655FB /* ViewController.m */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		3BFA27862116843F0008062B /* libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +239,7 @@
 				3B7553B221163787008655FB /* ViewController.m in Sources */,
 				3B7553BD21163788008655FB /* main.m in Sources */,
 				3B7553AF21163787008655FB /* AppDelegate.m in Sources */,
+				3BFA278B211687F10008062B /* RestService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
