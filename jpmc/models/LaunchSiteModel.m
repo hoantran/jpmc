@@ -9,10 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "LaunchSiteModel.h"
 
+// Though empty, the linker requires the implementation to be present
 @implementation LaunchSiteModel
-
-//+ (JSONKeyMapper *)keyMapper {
-//    return [JSONKeyMapper mapperForSnakeCase];
-//}
-
 @end

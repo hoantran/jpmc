@@ -12,12 +12,6 @@
 #import <Foundation/Foundation.h>
 #import "JSONModel.h"
 
-//@interface LaunchSiteModel : JSONModel
-//@property (nonatomic) NSString *siteId;
-//@property (nonatomic) NSString *siteName;
-//@property (nonatomic) NSString *siteNameLong;
-//@end
-
 @interface LaunchSiteModel : JSONModel
 @property (nonatomic) NSString *site_id;
 @property (nonatomic) NSString *site_name;

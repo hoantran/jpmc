@@ -23,20 +23,9 @@ RestService *svr;
     [super viewDidLoad];
     
     svr = [[RestService alloc] init];
-    [svr get:@"https://api.spacexdata.com/v2/launches/next" success:^(NSData * _Nonnull data) {
-        NSLog(@"What's up, Doc?");
-//        NSError *parseError = nil;
-//        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
-//        NSLog(@"The response is - %@",responseDictionary);
+    [svr get:@"https://api.spacexdata.com/v2/launches/all" success:^(NSData * _Nonnull data) {
         NSError* err = nil;
-//        self.launches = [LaunchModel arrayOfModelsFromData:data error:&err];
-//        NSLog(err);
-//        NSLog(self.launches);
-//        LaunchModel *nextLaunch = [[LaunchModel alloc] initWithString:data error:&err];
-        LaunchModel *x = [[LaunchModel alloc] initWithData:data error:&err];
-        NSLog(@"mission name: %@", x.mission_name);
-        
-        NSLog(@"ok");
+        self.launches = [LaunchModel arrayOfModelsFromData:data error:&err];
     }];
 }
 
