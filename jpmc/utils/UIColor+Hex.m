@@ -9,6 +9,8 @@
 #import "UIColor+Hex.h"
 
 @implementation UIColor (Hex)
+
+//  https://gist.github.com/itsjustcon/5751521
 + (UIColor *) colorFromHexCode:(NSString *)hexString {
     NSString *cleanString = [hexString stringByReplacingOccurrencesOfString:@"#" withString:@""];
     if([cleanString length] == 3) {

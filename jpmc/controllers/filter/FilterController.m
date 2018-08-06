@@ -6,6 +6,23 @@
 //  Copyright © 2018 Hoan Tran. All rights reserved.
 //
 
+// ..............................................................................................
+// The UI of this controller can be so much more user friendly!
+// Different choice of controls for From/To fields would guide the inputs to be in the right type.
+// For example a From/To can an UIPicker object that has all of the possible (2006-2018) years,
+// so that the string result would be correct without a need for validation.
+// The last choice for the UIPicker is a placeholder (e.g. Use mm/dd/yyyy) for signaling that the user wants to input using mm/dd/yyyy instead.
+// In that case, then either a UIDatePicker or some other widget that pops up a calendar can be used to pick the date.
+
+// All of the possible years, earliest possible date or latest possible date
+// should be in injected into this controller
+// for guiding the user to input the meaning choices
+//
+// Recalling showing the current filter when entering this controller would be a good UI practice
+// ..............................................................................................
+
+
+
 #import "FilterController.h"
 #import "UpcomingView.h"
 #import "DateView.h"

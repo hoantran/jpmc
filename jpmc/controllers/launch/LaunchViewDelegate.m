@@ -11,7 +11,7 @@
 @implementation LaunchViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%lu", [indexPath row]);
+    NSLog(@"Mission on row [%lu]", [indexPath row]);
 }
 
 @end

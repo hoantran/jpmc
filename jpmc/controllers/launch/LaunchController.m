@@ -6,6 +6,20 @@
 //  Copyright © 2018 Hoan Tran. All rights reserved.
 //
 
+// ..............................................................................................
+// A few more features would enhance the user experience greatly:
+// * Pull-to-refresh would pull down the latest data
+// * An activity indcator tells user that it's busy
+// * A detail view of a lanch window when user taps on a mission row is mostly probably expected
+// * Pictures of a mission (even canned one flickr ) would be much more visually appealing.
+// * Custom cells for each mission row would be a must to emphasize important info and UI enhancements
+// * When a filter is applied, the title should reflect that. e.g. "All Launches", "2012 Launches", "03/05/2014 - 09/06/2017" etc.
+// *
+// * A "No Launches available" would be useful when none is in the table.
+// ..............................................................................................
+
+
+
 #import "LaunchController.h"
 #import "RestService.h"
 #import "LaunchModel.h"
@@ -27,7 +41,7 @@ RestService *svr;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"All Launches";
+    self.navigationItem.title = @"Launches";
     
     [self setupFilterButton];
     [self setupMainView];
@@ -76,9 +90,6 @@ RestService *svr;
         NSError* err = nil;
         self.launches = [LaunchModel arrayOfModelsFromData:data error:&err];
         if (self.launches != nil) {
-//            [self updateMainView:[LaunchModel filter:self.launches byYear:@"2017"]];
-//            [self updateMainView:[LaunchModel filter:self.launches byKind:LaunchFilterbyUpcoming]];
-//            [self updateMainView:[LaunchModel filter:self.launches byDateRangeFrom:1007164800 to:1483228800]];
             [self updateMainView:self.launches];
         }
     }];
@@ -96,7 +107,6 @@ RestService *svr;
     UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:controller];
     controller.filterResultDelegate = self;
     [self presentViewController:navController animated:YES completion:^{
-        NSLog(@"complted");
     }];
 }
 
@@ -136,6 +146,8 @@ RestService *svr;
             toUnix = [to timeIntervalSince1970];
             if (fromUnix <= toUnix) {
                 filteredLaunches = [LaunchModel filter:src byDateRangeFrom:fromUnix to:toUnix];
+            } else {
+                filteredLaunches = [[NSArray alloc]init];
             }
         }
     }
@@ -143,8 +155,25 @@ RestService *svr;
     return filteredLaunches;
 }
 
+-(NSArray *)filteredByDate:(NSArray *)src from:(NSString *)reqFrom to:(NSString *)reqTo {
+    NSDate *from, *to;
+    double fromUnix, toUnix;
+    from = [self getDate:reqFrom];
+    to = [self getDate:reqTo];
+    NSArray *filteredLaunches = nil;
+    
+    if (from != nil && to != nil) {
+        fromUnix = [from timeIntervalSince1970];
+        toUnix = [to timeIntervalSince1970];
+        if (fromUnix <= toUnix) {
+            filteredLaunches = [LaunchModel filter:src byDateRangeFrom:fromUnix to:toUnix];
+        }
+    }
+    
+    return filteredLaunches;
+}
+
 -(void)filterDidComplete:(FilterResult*)result {
-    NSLog(@"from:%@", result->from);
     NSArray *filteredLaunches = self.launches;
     
     if( result->upcoming ){
@@ -154,7 +183,10 @@ RestService *svr;
     NSArray *filtered = [self filteredByYear:filteredLaunches from:result->from to:result->to];
     
     if (filtered == nil) {
-        // do something
+        filtered = [self filteredByDate:filteredLaunches from:result->from to:result->to];
+        if (filtered != nil) {
+            filteredLaunches = filtered;
+        }
     } else {
         filteredLaunches = filtered;
     }

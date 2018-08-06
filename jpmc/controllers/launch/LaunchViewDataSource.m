@@ -31,7 +31,6 @@ NSString *const kCellIdentifier = @"CLICK";
     if (self.launches == nil) {
         return 0;
     } else {
-        NSLog(@"number of rows: %lu", (unsigned long)self.launches.count);
         return self.launches.count;
     }
 }
@@ -41,20 +40,16 @@ NSString *const kCellIdentifier = @"CLICK";
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:kCellIdentifier];
     }
-    NSLog(@"Getting row: %lu", indexPath.row);
-//    cell.textLabel.text = @"Hello there";
     LaunchModel *launch = [self.launches objectAtIndex:indexPath.row];
     if (launch == nil) {
         cell.textLabel.text = @"Launch data not available";
     } else {
         cell.textLabel.text = launch.mission_name;
-//        cell.detailTextLabel.text = launch.launch_year;
 
         NSDate* date = [NSDate dateWithTimeIntervalSince1970:launch.launch_date_unix];
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"YYYY-MM-dd"];
-        NSLog(@"Local date is %@",[formatter stringFromDate:date]);
         cell.detailTextLabel.text = [formatter stringFromDate:date];
     }
     return cell;

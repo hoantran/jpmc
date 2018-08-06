@@ -6,6 +6,17 @@
 //  Copyright © 2018 Hoan Tran. All rights reserved.
 //
 
+
+
+// ..............................................................................................
+// Quite a few data are ignored that are possibly needed by a full blown app
+//
+// The models are also very ridgid where a missing non-ignored field would make JSONModel discard everything and returns nil
+// ..............................................................................................
+
+
+
+
 #ifndef LaunchModel_h
 #define LaunchModel_h
 

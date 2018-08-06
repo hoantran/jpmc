@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "LaunchSiteModel.h"
 
+//
+// IMPORTANT:
 // Though empty, the linker requires the implementation to be present
+//
+
 @implementation LaunchSiteModel
 @end
