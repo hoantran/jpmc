@@ -48,7 +48,14 @@ NSString *const kCellIdentifier = @"CLICK";
         cell.textLabel.text = @"Launch data not available";
     } else {
         cell.textLabel.text = launch.mission_name;
-        cell.detailTextLabel.text = launch.launch_site.site_name;
+//        cell.detailTextLabel.text = launch.launch_year;
+
+        NSDate* date = [NSDate dateWithTimeIntervalSince1970:launch.launch_date_unix];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY-MM-dd"];
+        NSLog(@"Local date is %@",[formatter stringFromDate:date]);
+        cell.detailTextLabel.text = [formatter stringFromDate:date];
     }
     return cell;
 }

@@ -29,6 +29,7 @@ RestService *svr;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
 //    UINavigationBar* navbar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
 //
 //    UINavigationItem* navItem = [[UINavigationItem alloc] initWithTitle:@"karthik"];
@@ -101,20 +102,28 @@ RestService *svr;
                                               nil]];
 }
 
+
+
 -(void)pullDownAllLaunches {
     svr = [[RestService alloc] init];
     [svr get:@"https://api.spacexdata.com/v2/launches/all" success:^(NSData * _Nonnull data) {
         NSError* err = nil;
         self.launches = [LaunchModel arrayOfModelsFromData:data error:&err];
         if (self.launches != nil) {
-            [self.mainViewDatasource updateLaunches:self.launches];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.mainView reloadData];
-            });
+//            [self updateMainView:[LaunchModel filter:self.launches byYear:@"2017"]];
+//            [self updateMainView:[LaunchModel filter:self.launches byKind:LaunchFilterbyUpcoming]];
+            [self updateMainView:[LaunchModel filter:self.launches byDateRangeFrom:1007164800 to:1483228800]];  
         }
-        
     }];
 }
+
+-(void)updateMainView:(NSArray* _Nonnull)launches {
+    [self.mainViewDatasource updateLaunches:launches];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.mainView reloadData];
+    });
+}
+
 -(void)handleFilterTapped {
     NSLog(@"Filter tapped");
 }
