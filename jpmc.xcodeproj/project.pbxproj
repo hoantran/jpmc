@@ -48,6 +48,7 @@
 		3B50145B21170520000011CE /* LaunchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchModel.m; sourceTree = "<group>"; };
 		3B50145E2117057C000011CE /* LaunchSiteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchSiteModel.m; sourceTree = "<group>"; };
 		3B5014602117059D000011CE /* LaunchSiteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchSiteModel.h; sourceTree = "<group>"; };
+		3B5968B32119076200A27CAF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3B648A8A2116FF7100A29760 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3B7553AA21163787008655FB /* jpmc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jpmc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B7553AD21163787008655FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -117,6 +118,7 @@
 		3B7553A121163787008655FB = {
 			isa = PBXGroup;
 			children = (
+				3B5968B32119076200A27CAF /* README.md */,
 				3B648A8A2116FF7100A29760 /* Podfile */,
 				3B7553AC21163787008655FB /* jpmc */,
 				3B7553C521163788008655FB /* jpmcTests */,
