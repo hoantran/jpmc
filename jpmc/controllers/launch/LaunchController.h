@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  LaunchController.h
 //  jpmc
 //
 //  Created by Hoan Tran on 8/4/18.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface LaunchController : UIViewController
 
 
 @end

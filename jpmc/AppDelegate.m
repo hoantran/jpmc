@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "LaunchController.h"
 
 @interface AppDelegate ()
 
@@ -20,23 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-//    self.window.rootViewController = [[ViewController alloc] init];
-//    self.window.backgroundColor = [UIColor cyanColor];
-    
-    
-//    UINavigationBar.appearance().barTintColor = UIColor.white
-//    let controller = UINavigationController()
-//    let img = UIImage()
-//    controller.navigationBar.shadowImage = img
-//    window = UIWindow(frame: UIScreen.main.bounds)
-//    window?.makeKeyAndVisible()
-//    window?.rootViewController = controller
-    
-//    [[UINavigationBar appearance] setTintColor:[UIColor redColor]];
-
-//    window?.rootViewController = UINavigationController(rootViewController: MainController())
-    
-    ViewController *controller = [[ViewController alloc] init];
+    LaunchController *controller = [[LaunchController alloc] init];
     self.window.rootViewController = [[UINavigationController alloc]initWithRootViewController:controller];
     self.window.backgroundColor = [UIColor whiteColor];
     
