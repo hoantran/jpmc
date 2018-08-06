@@ -115,6 +115,34 @@ RestService *svr;
     return [formatter dateFromString: date];
 }
 
+-(NSArray *)filteredByYear:(NSArray *)src from:(NSString *)reqFrom to:(NSString *)reqTo {
+    NSDate *from, *to;
+    double fromUnix, toUnix;
+    from = [self getYear:reqFrom];
+    to = [self getYear:reqTo];
+    NSArray *filteredLaunches = nil;
+    
+    if (from == nil) {
+        if (to != nil) {
+            filteredLaunches = [LaunchModel filter:src byYear:reqTo];
+        }
+    } else {
+        if (to == nil) {
+            filteredLaunches = [LaunchModel filter:src byYear:reqFrom];
+        } else {
+            NSString *lastDayOfToYear = [NSString stringWithFormat:@"12/31/%@",reqTo];
+            to = [self getDate:lastDayOfToYear];
+            fromUnix = [from timeIntervalSince1970];
+            toUnix = [to timeIntervalSince1970];
+            if (fromUnix <= toUnix) {
+                filteredLaunches = [LaunchModel filter:src byDateRangeFrom:fromUnix to:toUnix];
+            }
+        }
+    }
+    
+    return filteredLaunches;
+}
+
 -(void)filterDidComplete:(FilterResult*)result {
     NSLog(@"from:%@", result->from);
     NSArray *filteredLaunches = self.launches;
@@ -123,27 +151,12 @@ RestService *svr;
         filteredLaunches = [LaunchModel filter:filteredLaunches byKind:LaunchFilterbyUpcoming];
     }
     
-    NSDate *from, *to;
-    double fromUnix, toUnix;
-    from = [self getYear:result->from];
-    to = [self getYear:result->to];
+    NSArray *filtered = [self filteredByYear:filteredLaunches from:result->from to:result->to];
     
-    if (from == nil) {
-        if (to != nil) {
-            filteredLaunches = [LaunchModel filter:filteredLaunches byYear:result->to];
-        }
+    if (filtered == nil) {
+        // do something
     } else {
-        if (to == nil) {
-            filteredLaunches = [LaunchModel filter:filteredLaunches byYear:result->from];
-        } else {
-            NSString *lastDayOfToYear = [NSString stringWithFormat:@"12/31/%@",result->to];
-            to = [self getDate:lastDayOfToYear];
-            fromUnix = [from timeIntervalSince1970];
-            toUnix = [to timeIntervalSince1970];
-            if (fromUnix <= toUnix) {
-                filteredLaunches = [LaunchModel filter:filteredLaunches byDateRangeFrom:fromUnix to:toUnix];
-            }
-        }
+        filteredLaunches = filtered;
     }
     
     [self updateMainView:filteredLaunches];
