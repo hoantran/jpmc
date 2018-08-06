@@ -10,9 +10,17 @@
 #import "RestService.h"
 #import "LaunchModel.h"
 #import "LaunchSiteModel.h"
+#import "LaunchView.h"
+
+#import "LaunchViewDelegate.h"
+#import "LaunchViewDataSource.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) NSArray* launches;
+@property (strong, nonatomic) LaunchView *mainView;
+@property (strong, nonatomic) LaunchViewDelegate *mainViewDelegate;
+@property (strong, nonatomic) LaunchViewDataSource *mainViewDatasource;
+
 //@property (strong, nonatomic) NSArray* next;
 @end
 
@@ -21,15 +29,6 @@ RestService *svr;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-//    svr = [[RestService alloc] init];
-//    [svr get:@"https://api.spacexdata.com/v2/launches/all" success:^(NSData * _Nonnull data) {
-//        NSError* err = nil;
-//        self.launches = [LaunchModel arrayOfModelsFromData:data error:&err];
-//        NSLog(@"ok");
-//    }];
-    
 //    UINavigationBar* navbar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
 //
 //    UINavigationItem* navItem = [[UINavigationItem alloc] initWithTitle:@"karthik"];
@@ -58,6 +57,8 @@ RestService *svr;
     
     
     [self setupFilterButton];
+    [self setupMainView];
+    [self pullDownAllLaunches];
 }
 
 - (void) setupFilterButton {
@@ -78,6 +79,42 @@ RestService *svr;
     self.navigationItem.rightBarButtonItems = @[spacer,_btnLeftBar];
 }
 
+- (void) setupMainView {
+//    v.backgroundColor = UIColor.black
+//    v.isHidden = true
+    
+    // Main view
+    self.mainView = [[LaunchView alloc] initWithFrame:CGRectZero];
+    self.mainView.translatesAutoresizingMaskIntoConstraints = false;
+//    [self.mainView registerClass:[UITableViewCell class]  forCellReuseIdentifier:kCellIdentifier];
+    self.mainViewDatasource = [[LaunchViewDataSource alloc] init];
+    self.mainView.dataSource = self.mainViewDatasource;
+    self.mainViewDelegate = [[LaunchViewDelegate alloc] init];
+    self.mainView.delegate = self.mainViewDelegate;
+    
+    [self.view addSubview:self.mainView];
+    [NSLayoutConstraint activateConstraints: [NSArray arrayWithObjects:
+                                              [self.mainView.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.centerXAnchor],
+                                              [self.mainView.centerYAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.centerYAnchor],
+                                              [self.mainView.widthAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.widthAnchor],
+                                              [self.mainView.heightAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.heightAnchor],
+                                              nil]];
+}
+
+-(void)pullDownAllLaunches {
+    svr = [[RestService alloc] init];
+    [svr get:@"https://api.spacexdata.com/v2/launches/all" success:^(NSData * _Nonnull data) {
+        NSError* err = nil;
+        self.launches = [LaunchModel arrayOfModelsFromData:data error:&err];
+        if (self.launches != nil) {
+            [self.mainViewDatasource updateLaunches:self.launches];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.mainView reloadData];
+            });
+        }
+        
+    }];
+}
 -(void)handleFilterTapped {
     NSLog(@"Filter tapped");
 }

@@ -20,6 +20,9 @@
 		3B7553BD21163788008655FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7553BC21163788008655FB /* main.m */; };
 		3B7553C721163788008655FB /* jpmcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7553C621163788008655FB /* jpmcTests.m */; };
 		3BFA278B211687F10008062B /* RestService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA278A211687F10008062B /* RestService.m */; };
+		3BFC66B42117C38500930E43 /* LaunchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFC66B32117C38500930E43 /* LaunchView.m */; };
+		3BFC66B72117C49700930E43 /* LaunchViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFC66B62117C49700930E43 /* LaunchViewDelegate.m */; };
+		3BFC66BA2117C58A00930E43 /* LaunchViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFC66B92117C58A00930E43 /* LaunchViewDataSource.m */; };
 		C75DF896E8A35EE5F7EC61F8 /* libPods-jpmcTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 180A137E0D4F7950C52D6893 /* libPods-jpmcTests.a */; };
 		FA159B79C9BD43627EF884AF /* libPods-jpmc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7F9934438FEA0767D49F01 /* libPods-jpmc.a */; };
 /* End PBXBuildFile section */
@@ -58,6 +61,12 @@
 		3BC3D1DA2117007100DA59E0 /* LaunchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchModel.h; sourceTree = "<group>"; };
 		3BFA2789211687F10008062B /* RestService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestService.h; sourceTree = "<group>"; };
 		3BFA278A211687F10008062B /* RestService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestService.m; sourceTree = "<group>"; };
+		3BFC66B22117C38500930E43 /* LaunchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchView.h; sourceTree = "<group>"; };
+		3BFC66B32117C38500930E43 /* LaunchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchView.m; sourceTree = "<group>"; };
+		3BFC66B52117C49700930E43 /* LaunchViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchViewDelegate.h; sourceTree = "<group>"; };
+		3BFC66B62117C49700930E43 /* LaunchViewDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchViewDelegate.m; sourceTree = "<group>"; };
+		3BFC66B82117C58A00930E43 /* LaunchViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchViewDataSource.h; sourceTree = "<group>"; };
+		3BFC66B92117C58A00930E43 /* LaunchViewDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchViewDataSource.m; sourceTree = "<group>"; };
 		9E0D9C73B75A0E648632BA7F /* Pods-jpmcTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jpmcTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-jpmcTests/Pods-jpmcTests.release.xcconfig"; sourceTree = "<group>"; };
 		D8191B1205981C121AAAC1DA /* Pods-jpmc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jpmc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jpmc/Pods-jpmc.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +162,12 @@
 			children = (
 				3B7553B021163787008655FB /* ViewController.h */,
 				3B7553B121163787008655FB /* ViewController.m */,
+				3BFC66B22117C38500930E43 /* LaunchView.h */,
+				3BFC66B32117C38500930E43 /* LaunchView.m */,
+				3BFC66B52117C49700930E43 /* LaunchViewDelegate.h */,
+				3BFC66B62117C49700930E43 /* LaunchViewDelegate.m */,
+				3BFC66B82117C58A00930E43 /* LaunchViewDataSource.h */,
+				3BFC66B92117C58A00930E43 /* LaunchViewDataSource.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -318,7 +333,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BFC66B72117C49700930E43 /* LaunchViewDelegate.m in Sources */,
+				3BFC66BA2117C58A00930E43 /* LaunchViewDataSource.m in Sources */,
 				3B7553B221163787008655FB /* ViewController.m in Sources */,
+				3BFC66B42117C38500930E43 /* LaunchView.m in Sources */,
 				3B50145F2117057C000011CE /* LaunchSiteModel.m in Sources */,
 				3B7553BD21163788008655FB /* main.m in Sources */,
 				3B7553AF21163787008655FB /* AppDelegate.m in Sources */,
