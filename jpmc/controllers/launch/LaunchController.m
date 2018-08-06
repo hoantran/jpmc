@@ -11,9 +11,9 @@
 #import "LaunchModel.h"
 #import "LaunchSiteModel.h"
 #import "LaunchView.h"
-
 #import "LaunchViewDelegate.h"
 #import "LaunchViewDataSource.h"
+#import "FilterController.h"
 
 @interface LaunchController ()
 @property (strong, nonatomic) NSArray* launches;
@@ -91,10 +91,9 @@ RestService *svr;
 }
 
 -(void)handleFilterTapped {
-    NSLog(@"Filter tapped");
-    UIViewController *controller = [[UIViewController alloc]init];
-    controller.view.backgroundColor = [UIColor redColor];
-    [self presentViewController:controller animated:YES completion:^{
+    FilterController *controller = [[FilterController alloc]init];
+    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:controller];
+    [self presentViewController:navController animated:YES completion:^{
         NSLog(@"complted");
     }];
 }
