@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LaunchModel.h"
+#import <float.h>
 
 // Though empty, the linker requires the implementation to be present
 @implementation LaunchModel
@@ -58,6 +59,28 @@
 
 }
 
++(double)earliest: (NSArray *)array {
+    double earliest = DBL_MAX;
+    if (array != nil) {
+        for (id launch in array) {
+            if ( [launch launch_date_unix] < earliest && [launch launch_date_unix] > 0) {
+                earliest = [launch launch_date_unix];
+            }
+        }
+    }
+    return earliest;
+}
++(double)latest: (NSArray *)array {
+    double latest = 0;
+    if (array != nil) {
+        for (id launch in array) {
+            if ( [launch launch_date_unix] > latest) {
+                latest = [launch launch_date_unix];
+            }
+        }
+    }
+    return latest;
+}
 
 
 

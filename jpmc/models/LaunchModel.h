@@ -37,6 +37,9 @@ typedef NS_ENUM(NSInteger, LaunchFilter) {
 +(NSArray *)filter: (NSArray *)array byYear:(nonnull NSString*)year;
 +(NSArray *)filter: (NSArray *)array byKind:(LaunchFilter)kind;
 +(NSArray *)filter: (NSArray *)array byDateRangeFrom:(double)from to:(double)to;
++(double)earliest: (NSArray *)array;
++(double)latest: (NSArray *)array;
+
 @end
 
 #endif /* LaunchModel_h */

@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FilterResultReceiver.h"
 
-@interface LaunchController : UIViewController
+
+@interface LaunchController : UIViewController<FilterResultReceiver>
 
 
 @end

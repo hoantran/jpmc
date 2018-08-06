@@ -78,7 +78,8 @@ RestService *svr;
         if (self.launches != nil) {
 //            [self updateMainView:[LaunchModel filter:self.launches byYear:@"2017"]];
 //            [self updateMainView:[LaunchModel filter:self.launches byKind:LaunchFilterbyUpcoming]];
-            [self updateMainView:[LaunchModel filter:self.launches byDateRangeFrom:1007164800 to:1483228800]];
+//            [self updateMainView:[LaunchModel filter:self.launches byDateRangeFrom:1007164800 to:1483228800]];
+            [self updateMainView:self.launches];
         }
     }];
 }
@@ -93,9 +94,59 @@ RestService *svr;
 -(void)handleFilterTapped {
     FilterController *controller = [[FilterController alloc]init];
     UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:controller];
+    controller.filterResultDelegate = self;
     [self presentViewController:navController animated:YES completion:^{
         NSLog(@"complted");
     }];
+}
+
+-(NSDate *)getYear:(NSString *)year {
+    return [self getFormattedDate:year format:@"yyyy"];
+}
+
+-(NSDate *)getDate:(NSString *)year {
+    return [self getFormattedDate:year format:@"MM/dd/yyyy"];
+}
+
+
+-(NSDate *)getFormattedDate:(NSString *)date format:(NSString *)format {
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = format;
+    return [formatter dateFromString: date];
+}
+
+-(void)filterDidComplete:(FilterResult*)result {
+    NSLog(@"from:%@", result->from);
+    NSArray *filteredLaunches = self.launches;
+    
+    if( result->upcoming ){
+        filteredLaunches = [LaunchModel filter:filteredLaunches byKind:LaunchFilterbyUpcoming];
+    }
+    
+    NSDate *from, *to;
+    double fromUnix, toUnix;
+    from = [self getYear:result->from];
+    to = [self getYear:result->to];
+    
+    if (from == nil) {
+        if (to != nil) {
+            filteredLaunches = [LaunchModel filter:filteredLaunches byYear:result->to];
+        }
+    } else {
+        if (to == nil) {
+            filteredLaunches = [LaunchModel filter:filteredLaunches byYear:result->from];
+        } else {
+            NSString *lastDayOfToYear = [NSString stringWithFormat:@"12/31/%@",result->to];
+            to = [self getDate:lastDayOfToYear];
+            fromUnix = [from timeIntervalSince1970];
+            toUnix = [to timeIntervalSince1970];
+            if (fromUnix <= toUnix) {
+                filteredLaunches = [LaunchModel filter:filteredLaunches byDateRangeFrom:fromUnix to:toUnix];
+            }
+        }
+    }
+    
+    [self updateMainView:filteredLaunches];
 }
 
 @end

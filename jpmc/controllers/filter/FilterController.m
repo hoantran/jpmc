@@ -7,10 +7,15 @@
 //
 
 #import "FilterController.h"
+#import "UpcomingView.h"
+#import "DateView.h"
+
 
 @interface FilterController ()
-@property (nonatomic, retain) UIPickerView *pickerView;
-@property (nonatomic, retain) NSArray *pickerSource;
+@property (nonatomic, retain) NSArray *years;
+@property (nonatomic, strong) UpcomingView *upcoming;
+@property (nonatomic, strong) DateView *from;
+@property (nonatomic, strong) DateView *to;
 @end
 
 @implementation FilterController
@@ -18,27 +23,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor blueColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self setupNavigation];
+    [self setupUpcoming];
+    [self setupFrom];
+    [self setupTo];
     
-    self.pickerSource = [[NSArray alloc] initWithObjects:@"One", @"Two", nil];
-    [self setupPickerView];
+    self.years = [[NSArray alloc] initWithObjects:@"Anytime", @"2017", @"2018", nil];
 }
 
-- (void) setupPickerView {
-    self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectZero];
-    self.pickerView.translatesAutoresizingMaskIntoConstraints = false;
-    self.pickerView.delegate = self;
-    self.pickerView.dataSource = self;
 
-    [self.view addSubview:self.pickerView];
-    [NSLayoutConstraint activateConstraints: [NSArray arrayWithObjects:
-                                              [self.pickerView.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.centerXAnchor],
-                                              [self.pickerView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor],
-                                              [self.pickerView.widthAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.widthAnchor],
-                                              [self.pickerView.heightAnchor constraintEqualToConstant:100],
-                                              nil]];
-}
 
 -(void)setupNavigation {
     self.navigationItem.title = @"Filter";
@@ -46,30 +40,59 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchTapped)];
 }
 
+-(void)setupUpcoming {
+    self.upcoming = [[UpcomingView alloc]initWithFrame:CGRectZero];
+    self.upcoming.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.upcoming];
+    [NSLayoutConstraint activateConstraints: [NSArray arrayWithObjects:
+                                              [self.upcoming.leftAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leftAnchor constant:0],
+                                              [self.upcoming.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:10],
+                                              [self.upcoming.widthAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.widthAnchor constant:0],
+                                              [self.upcoming.heightAnchor constraintEqualToConstant:50],
+                                              nil]];
+}
+
+-(void)setupFrom {
+    self.from = [[DateView alloc]initWithFrame:CGRectZero];
+    [self.from setTitle:@"From"];
+    self.from.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.from];
+    [NSLayoutConstraint activateConstraints: [NSArray arrayWithObjects:
+                                              [self.from.leftAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leftAnchor constant:0],
+                                              [self.from.topAnchor constraintEqualToAnchor:self.upcoming.bottomAnchor constant:5],
+                                              [self.from.widthAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.widthAnchor constant:0],
+                                              [self.from.heightAnchor constraintEqualToConstant:50],
+                                              nil]];
+}
+
+-(void)setupTo {
+    self.to = [[DateView alloc]initWithFrame:CGRectZero];
+    [self.to setTitle:@"To"];
+    self.to.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.to];
+    [NSLayoutConstraint activateConstraints: [NSArray arrayWithObjects:
+                                              [self.to.leftAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leftAnchor constant:0],
+                                              [self.to.topAnchor constraintEqualToAnchor:self.from.bottomAnchor constant:5],
+                                              [self.to.widthAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.widthAnchor constant:0],
+                                              [self.to.heightAnchor constraintEqualToConstant:50],
+                                              nil]];
+}
+
 -(void)cancelTapped {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)searchTapped {
-    NSLog(@"Search...");
+    if (self.filterResultDelegate != nil && [self.filterResultDelegate respondsToSelector:@selector(filterDidComplete:)]) {
+        FilterResult result;
+        result.from = [self.from getDate];
+        result.to = [self.to getDate];
+        result.upcoming = [self.upcoming isOn];
+        [self.filterResultDelegate filterDidComplete:&result];
+    }
+
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    NSLog(@"Did select %lu", row);
-}
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return self.pickerSource.count;
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [self.pickerSource objectAtIndex:row];
-}
 
 @end

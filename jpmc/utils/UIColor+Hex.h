@@ -1,0 +1,18 @@
+//
+//  UIColor+Hex.h
+//  jpmc
+//
+//  Created by Hoan Tran on 8/6/18.
+//  Copyright © 2018 Hoan Tran. All rights reserved.
+//
+//  https://gist.github.com/itsjustcon/5751521
+
+#import <UIKit/UIKit.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface UIColor (Hex)
++ (UIColor *) colorFromHexCode:(NSString *)hexString;
+@end
+
+NS_ASSUME_NONNULL_END

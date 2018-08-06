@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FilterResultReceiver.h"
+
+@protocol FilterResultReceiver;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FilterController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource>
-
+@interface FilterController : UIViewController
+@property (nonatomic, weak) id<FilterResultReceiver> filterResultDelegate;
 @end
 
 NS_ASSUME_NONNULL_END
