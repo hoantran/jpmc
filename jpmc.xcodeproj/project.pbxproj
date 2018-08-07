@@ -22,6 +22,7 @@
 		3BB52A722118BC80002C81FE /* UpcomingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB52A712118BC80002C81FE /* UpcomingView.m */; };
 		3BB52A752118C6D0002C81FE /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB52A742118C6D0002C81FE /* UIColor+Hex.m */; };
 		3BB52A782118C80B002C81FE /* DateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB52A772118C80B002C81FE /* DateView.m */; };
+		3BF0CB56211982CD00A5A1A7 /* LaunchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF0CB55211982CD00A5A1A7 /* LaunchCell.m */; };
 		3BFA278B211687F10008062B /* RestService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA278A211687F10008062B /* RestService.m */; };
 		3BFC66B42117C38500930E43 /* LaunchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFC66B32117C38500930E43 /* LaunchView.m */; };
 		3BFC66B72117C49700930E43 /* LaunchViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFC66B62117C49700930E43 /* LaunchViewDelegate.m */; };
@@ -72,6 +73,8 @@
 		3BB52A772118C80B002C81FE /* DateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DateView.m; sourceTree = "<group>"; };
 		3BB52A792118D5AC002C81FE /* FilterResultReceiver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterResultReceiver.h; sourceTree = "<group>"; };
 		3BC3D1DA2117007100DA59E0 /* LaunchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchModel.h; sourceTree = "<group>"; };
+		3BF0CB54211982CD00A5A1A7 /* LaunchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchCell.h; sourceTree = "<group>"; };
+		3BF0CB55211982CD00A5A1A7 /* LaunchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchCell.m; sourceTree = "<group>"; };
 		3BFA2789211687F10008062B /* RestService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestService.h; sourceTree = "<group>"; };
 		3BFA278A211687F10008062B /* RestService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestService.m; sourceTree = "<group>"; };
 		3BFC66B22117C38500930E43 /* LaunchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchView.h; sourceTree = "<group>"; };
@@ -165,6 +168,8 @@
 		3BB52A6B2118A56E002C81FE /* launch */ = {
 			isa = PBXGroup;
 			children = (
+				3BF0CB54211982CD00A5A1A7 /* LaunchCell.h */,
+				3BF0CB55211982CD00A5A1A7 /* LaunchCell.m */,
 				3B7553B021163787008655FB /* LaunchController.h */,
 				3B7553B121163787008655FB /* LaunchController.m */,
 				3BFC66B22117C38500930E43 /* LaunchView.h */,
@@ -380,6 +385,7 @@
 				3B50145F2117057C000011CE /* LaunchSiteModel.m in Sources */,
 				3BB52A722118BC80002C81FE /* UpcomingView.m in Sources */,
 				3BB52A6F2118A78B002C81FE /* FilterController.m in Sources */,
+				3BF0CB56211982CD00A5A1A7 /* LaunchCell.m in Sources */,
 				3B7553BD21163788008655FB /* main.m in Sources */,
 				3B7553AF21163787008655FB /* AppDelegate.m in Sources */,
 				3B50145C21170520000011CE /* LaunchModel.m in Sources */,

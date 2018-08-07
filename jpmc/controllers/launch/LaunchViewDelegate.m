@@ -7,11 +7,16 @@
 //
 
 #import "LaunchViewDelegate.h"
+#import "LaunchCell.h"
 
 @implementation LaunchViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"Mission on row [%lu]", [indexPath row]);
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return LAUNCH_CELL_HEIGHT;
 }
 
 @end
