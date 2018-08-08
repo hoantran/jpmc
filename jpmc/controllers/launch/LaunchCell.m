@@ -14,6 +14,7 @@ CGFloat const LAUNCH_CELL_SIDE_OFFSET       = 15;
 CGFloat const LAUNCH_CELL_TOP_OFFSET        = 2;
 CGFloat const LAUNCH_CELL_COL_1_WIDTH       = 50;
 CGFloat const LAUNCH_CELL_COL_3_WIDTH       = 50;
+CGFloat const LAUNCH_CELL_COL_3_HEIGHT      = LAUNCH_CELL_COL_3_WIDTH - (2*LAUNCH_CELL_TOP_OFFSET);
 CGFloat const LAUNCH_CELL_YEAR_HEIGHT       = 15;
 CGFloat const LAUNCH_CELL_HORZ_GAP          = 5;
 CGFloat const LAUNCH_CELL_VERT_GAP          = 1;
@@ -27,6 +28,8 @@ CGFloat const LAUNCH_CELL_SEPARATOR_HEIGHT  = 1;
 @property (strong, nonatomic) UILabel *mission;
 @property (strong, nonatomic) UIView *separator;
 @property (strong, nonatomic) UILabel *landing;
+@property (strong, nonatomic) NSArray *cellBkgs;
+@property (strong, nonatomic) NSArray *yearBkgs;
 @end
 
 @implementation LaunchCell
@@ -34,11 +37,13 @@ CGFloat const LAUNCH_CELL_SEPARATOR_HEIGHT  = 1;
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self){
+        self.cellBkgs = [[NSArray alloc] initWithObjects:[UIColor whiteColor],[UIColor colorFromHexCode:@"F5F5F5"], nil];
+        self.yearBkgs = [[NSArray alloc] initWithObjects:[UIColor colorFromHexCode:@"DD2626"],[UIColor colorFromHexCode:@"A000A2"], nil];
+        
         UIView *bkgView = [[UIView alloc]init];
         bkgView.backgroundColor = [UIColor colorFromHexCode:@"FFFFE2"];
         self.selectedBackgroundView = bkgView;
-        self.backgroundColor = [UIColor colorFromHexCode:@"F5F5F5"];
-        [self setupDate];
+        [self setupYear];
         [self setupMonth];
         [self setupIcon];
         [self setupMissionColumn];
@@ -52,13 +57,69 @@ CGFloat const LAUNCH_CELL_SEPARATOR_HEIGHT  = 1;
     self.month.text = @"";
     self.mission.text = @"";
     self.landing.text = @"";
+    self.icon.image = nil;
+}
+
+-(void)updateBackgroundColor:(NSInteger)row {
+    NSInteger bkgIndex = row % self.cellBkgs.count;
+    self.backgroundColor = [self.cellBkgs objectAtIndex:bkgIndex];
+}
+
+-(void)updateYear:(NSString *)launchYear {
+    int year = [launchYear intValue];
+    NSInteger bkgIndex = year % self.yearBkgs.count;
+    self.year.backgroundColor = [self.yearBkgs objectAtIndex:bkgIndex];
+    self.year.text = launchYear;
+}
+
+-(void)updateMonth:(double)unixLaunchDate {
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:unixLaunchDate];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMM"];
+    self.month.text = [[formatter stringFromDate:date] uppercaseString];
+}
+
+-(void)updateMission:(NSString*)mission {
+    NSString *missionName = [mission uppercaseString];
+    int lengthLimit = 20;
+    if (missionName.length > lengthLimit)
+        missionName = [missionName substringToIndex:lengthLimit];
+    self.mission.text = missionName;
+}
+
+-(void)updateLanding:(NSString*)siteName {
+    NSString *landing = [siteName lowercaseString];
+    int lengthLimit = 35;
+    if (landing.length > lengthLimit)
+        landing = [landing substringToIndex:lengthLimit];
+    self.landing.text = landing;
+}
+
+-(void)updateIcon:(NSInteger)row {
+    // ..............................................................................................
+    // These are 3 stock images. Yet, correct images should be either preloaded or downloaded on the fly
+    // ..............................................................................................
+    NSString *imageFileName = [NSString stringWithFormat:@"spacex.%lu.jpg",(row % 3)+1];
+    [self.icon setImage: [UIImage imageNamed: imageFileName]];
+    self.icon.contentMode = UIViewContentModeScaleAspectFill;
+    self.icon.layer.cornerRadius = LAUNCH_CELL_COL_3_HEIGHT / 2;
+
+}
+
+-(void)setLaunchInfo:(LaunchModel *)launch row:(NSInteger)row {
+    [self updateBackgroundColor:row];
+    [self updateYear:launch.launch_year];
+    [self updateMonth:launch.launch_date_unix];
+    [self updateMission:launch.mission_name];
+    [self updateLanding:launch.launch_site.site_name];
+    [self updateIcon:row];
 }
 
 -(void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }
 
--(void)setupDate {
+-(void)setupYear {
     self.year = [[UILabel alloc] initWithFrame:CGRectZero];
     self.year.text = @"2018";
     self.year.textAlignment = NSTextAlignmentCenter;
@@ -139,17 +200,7 @@ CGFloat const LAUNCH_CELL_SEPARATOR_HEIGHT  = 1;
                                               [self.mission.widthAnchor constraintEqualToConstant:width],
                                               [self.mission.heightAnchor constraintEqualToConstant:LAUNCH_CELL_MISSION_HEIGHT],
                                               nil]];
-    
-    // separator
-//    let separatorLineView = UIView()
-//    separatorLineView.backgroundColor = UIColor(r: 220, g: 220, b: 220)
-//    separatorLineView.translatesAutoresizingMaskIntoConstraints = false
-//    addSubview(separatorLineView)
-//    //x,y,w,h
-//    separatorLineView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-//    separatorLineView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-//    separatorLineView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-//    separatorLineView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+
     CGFloat separatorHeight = 1;
     self.separator = [[UIView alloc]init];
     self.separator.backgroundColor = [UIColor colorFromHexCode:@"D8D8D8"];
