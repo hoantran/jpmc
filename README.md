@@ -4,3 +4,5 @@
 * No unit tests
 * Can use abundance of graphics
 
+(free appIcon by kisspng.com)
+
