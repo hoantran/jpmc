@@ -20,6 +20,7 @@
         MissionController *controller = [[MissionController alloc]init];
         controller.missionInfoProvider = self.missionInfoProvider;
         controller.row = indexPath.row;
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         [[self.launcherDelegate navigator] pushViewController:controller animated:YES];
     }
     
