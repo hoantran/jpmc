@@ -25,7 +25,6 @@
 #import "LaunchModel.h"
 #import "LaunchSiteModel.h"
 #import "LaunchView.h"
-#import "LaunchViewDelegate.h"
 #import "LaunchViewDataSource.h"
 #import "FilterController.h"
 
@@ -71,7 +70,9 @@ RestService *svr;
     self.mainViewDatasource = [[LaunchViewDataSource alloc] init];
     self.mainView.dataSource = self.mainViewDatasource;
     self.mainViewDelegate = [[LaunchViewDelegate alloc] init];
+    self.mainViewDelegate.launcherDelegate = self;
     self.mainView.delegate = self.mainViewDelegate;
+    self.mainViewDelegate.missionInfoProvider = self.mainViewDatasource;
     
     [self.view addSubview:self.mainView];
     [NSLayoutConstraint activateConstraints: [NSArray arrayWithObjects:
@@ -192,6 +193,10 @@ RestService *svr;
     }
     
     [self updateMainView:filteredLaunches];
+}
+
+- (nonnull UINavigationController *)navigator {
+    return self.navigationController;
 }
 
 @end

@@ -18,6 +18,7 @@
 		3B7553BA21163788008655FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B7553B821163788008655FB /* LaunchScreen.storyboard */; };
 		3B7553BD21163788008655FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7553BC21163788008655FB /* main.m */; };
 		3B7553C721163788008655FB /* jpmcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7553C621163788008655FB /* jpmcTests.m */; };
+		3B9610C8211B6B8E00EECE86 /* MissionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9610C7211B6B8E00EECE86 /* MissionController.m */; };
 		3BB52A6F2118A78B002C81FE /* FilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB52A6E2118A78B002C81FE /* FilterController.m */; };
 		3BB52A722118BC80002C81FE /* UpcomingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB52A712118BC80002C81FE /* UpcomingView.m */; };
 		3BB52A752118C6D0002C81FE /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB52A742118C6D0002C81FE /* UIColor+Hex.m */; };
@@ -63,6 +64,8 @@
 		3B7553C221163788008655FB /* jpmcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jpmcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B7553C621163788008655FB /* jpmcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = jpmcTests.m; sourceTree = "<group>"; };
 		3B7553C821163788008655FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B9610C6211B6B8E00EECE86 /* MissionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MissionController.h; sourceTree = "<group>"; };
+		3B9610C7211B6B8E00EECE86 /* MissionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MissionController.m; sourceTree = "<group>"; };
 		3BB52A6D2118A78B002C81FE /* FilterController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterController.h; sourceTree = "<group>"; };
 		3BB52A6E2118A78B002C81FE /* FilterController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterController.m; sourceTree = "<group>"; };
 		3BB52A702118BC80002C81FE /* UpcomingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpcomingView.h; sourceTree = "<group>"; };
@@ -165,6 +168,15 @@
 			path = jpmcTests;
 			sourceTree = "<group>";
 		};
+		3B9610C5211B6B6600EECE86 /* mission */ = {
+			isa = PBXGroup;
+			children = (
+				3B9610C6211B6B8E00EECE86 /* MissionController.h */,
+				3B9610C7211B6B8E00EECE86 /* MissionController.m */,
+			);
+			path = mission;
+			sourceTree = "<group>";
+		};
 		3BB52A6B2118A56E002C81FE /* launch */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +222,7 @@
 		3BFA2785211684350008062B /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3B9610C5211B6B6600EECE86 /* mission */,
 				3BB52A6B2118A56E002C81FE /* launch */,
 				3BB52A6C2118A768002C81FE /* filter */,
 			);
@@ -383,6 +396,7 @@
 				3B7553B221163787008655FB /* LaunchController.m in Sources */,
 				3BFC66B42117C38500930E43 /* LaunchView.m in Sources */,
 				3B50145F2117057C000011CE /* LaunchSiteModel.m in Sources */,
+				3B9610C8211B6B8E00EECE86 /* MissionController.m in Sources */,
 				3BB52A722118BC80002C81FE /* UpcomingView.m in Sources */,
 				3BB52A6F2118A78B002C81FE /* FilterController.m in Sources */,
 				3BF0CB56211982CD00A5A1A7 /* LaunchCell.m in Sources */,

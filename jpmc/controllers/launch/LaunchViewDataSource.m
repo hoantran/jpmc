@@ -42,8 +42,10 @@ NSString *const kCellIdentifier = @"MissionLaunchCell";
         cell = [[LaunchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier];
     }
     
-    [cell setLaunchInfo:[self.launches objectAtIndex:indexPath.row] row:indexPath.row];
-    
+    LaunchModel *launch = [self launchInfo:indexPath.row];
+    if (launch != nil) {
+        [cell setLaunchInfo:launch row:indexPath.row iconFileName:[self iconFileName:indexPath.row]];
+    }
 
     return cell;
 }
@@ -52,6 +54,26 @@ NSString *const kCellIdentifier = @"MissionLaunchCell";
     if (launches != nil) {
         NSLog(@"updating launches");
         self.launches = launches;
+    }
+}
+
+-(BOOL)isValidRowNumber:(NSInteger)row {
+    return row >= 0 && row < self.launches.count;
+}
+
+- (NSString *)iconFileName:(NSInteger)row {
+    if([self isValidRowNumber:row]) {
+        return [NSString stringWithFormat:@"spacex.%lu.jpg",(row % 3)+1];
+    }else{
+        return @"rocket.placeholder.png";
+    }
+}
+
+- (LaunchModel *)launchInfo:(NSInteger)row {
+    if([self isValidRowNumber:row]){
+        return [self.launches objectAtIndex:row];
+    } else {
+        return nil;
     }
 }
 

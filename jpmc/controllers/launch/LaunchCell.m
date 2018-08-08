@@ -27,7 +27,7 @@ CGFloat const LAUNCH_CELL_SEPARATOR_HEIGHT  = 1;
 @property (strong, nonatomic) UIImageView *icon;
 @property (strong, nonatomic) UILabel *mission;
 @property (strong, nonatomic) UIView *separator;
-@property (strong, nonatomic) UILabel *landing;
+@property (strong, nonatomic) UILabel *launchSite;
 @property (strong, nonatomic) NSArray *cellBkgs;
 @property (strong, nonatomic) NSArray *yearBkgs;
 @end
@@ -56,7 +56,7 @@ CGFloat const LAUNCH_CELL_SEPARATOR_HEIGHT  = 1;
     self.year.text = @"";
     self.month.text = @"";
     self.mission.text = @"";
-    self.landing.text = @"";
+    self.launchSite.text = @"";
     self.icon.image = nil;
 }
 
@@ -87,32 +87,31 @@ CGFloat const LAUNCH_CELL_SEPARATOR_HEIGHT  = 1;
     self.mission.text = missionName;
 }
 
--(void)updateLanding:(NSString*)siteName {
-    NSString *landing = [siteName lowercaseString];
+-(void)updateLaunchSite:(NSString*)siteName {
+    NSString *launchSite = [siteName lowercaseString];
     int lengthLimit = 35;
-    if (landing.length > lengthLimit)
-        landing = [landing substringToIndex:lengthLimit];
-    self.landing.text = landing;
+    if (launchSite.length > lengthLimit)
+        launchSite = [launchSite substringToIndex:lengthLimit];
+    self.launchSite.text = launchSite;
 }
 
--(void)updateIcon:(NSInteger)row {
+-(void)updateIcon:(NSString *)iconFileName {
     // ..............................................................................................
     // These are 3 stock images. Yet, correct images should be either preloaded or downloaded on the fly
     // ..............................................................................................
-    NSString *imageFileName = [NSString stringWithFormat:@"spacex.%lu.jpg",(row % 3)+1];
-    [self.icon setImage: [UIImage imageNamed: imageFileName]];
+    [self.icon setImage: [UIImage imageNamed: iconFileName]];
     self.icon.contentMode = UIViewContentModeScaleAspectFill;
     self.icon.layer.cornerRadius = LAUNCH_CELL_COL_3_HEIGHT / 2;
 
 }
 
--(void)setLaunchInfo:(LaunchModel *)launch row:(NSInteger)row {
+-(void)setLaunchInfo:(LaunchModel *)launch row:(NSInteger)row iconFileName:(NSString *)iconFileName {
     [self updateBackgroundColor:row];
     [self updateYear:launch.launch_year];
     [self updateMonth:launch.launch_date_unix];
     [self updateMission:launch.mission_name];
-    [self updateLanding:launch.launch_site.site_name];
-    [self updateIcon:row];
+    [self updateLaunchSite:launch.launch_site.site_name];
+    [self updateIcon:iconFileName];
 }
 
 -(void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -151,7 +150,7 @@ CGFloat const LAUNCH_CELL_SEPARATOR_HEIGHT  = 1;
     
     [NSLayoutConstraint activateConstraints: [NSArray arrayWithObjects:
                                               [self.month.centerXAnchor constraintEqualToAnchor:self.year.centerXAnchor],
-                                              [self.month.topAnchor constraintEqualToAnchor:self.year.bottomAnchor constant:-2],
+                                              [self.month.topAnchor constraintEqualToAnchor:self.year.bottomAnchor constant:-12],
                                               [self.month.widthAnchor constraintEqualToAnchor:self.year.widthAnchor],
                                               [self.month.heightAnchor constraintEqualToConstant:height],
                                               nil]];
@@ -215,20 +214,20 @@ CGFloat const LAUNCH_CELL_SEPARATOR_HEIGHT  = 1;
                                               nil]];
     
     
-    // landing
-    self.landing = [[UILabel alloc] initWithFrame:CGRectZero];
-    self.landing.text = @"landing";
-    self.landing.textAlignment = NSTextAlignmentCenter;
-    self.landing.font = [UIFont systemFontOfSize:14];
-    self.landing.textColor = [UIColor colorFromHexCode:@"676767"];
-    self.landing.translatesAutoresizingMaskIntoConstraints = NO;
-    [self addSubview:self.landing];
+    // launch site
+    self.launchSite = [[UILabel alloc] initWithFrame:CGRectZero];
+    self.launchSite.text = @"launch site";
+    self.launchSite.textAlignment = NSTextAlignmentCenter;
+    self.launchSite.font = [UIFont systemFontOfSize:14];
+    self.launchSite.textColor = [UIColor colorFromHexCode:@"676767"];
+    self.launchSite.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:self.launchSite];
 
     [NSLayoutConstraint activateConstraints: [NSArray arrayWithObjects:
-                                              [self.landing.centerXAnchor constraintEqualToAnchor:self.mission.centerXAnchor],
-                                              [self.landing.topAnchor constraintEqualToAnchor:self.separator.bottomAnchor constant:LAUNCH_CELL_VERT_GAP],
-                                              [self.landing.widthAnchor constraintEqualToConstant:width],
-                                              [self.landing.heightAnchor constraintEqualToConstant:LAUNCH_CELL_HEIGHT-(2*LAUNCH_CELL_VERT_GAP)-missionTopOffset-LAUNCH_CELL_MISSION_HEIGHT-10],
+                                              [self.launchSite.centerXAnchor constraintEqualToAnchor:self.mission.centerXAnchor],
+                                              [self.launchSite.topAnchor constraintEqualToAnchor:self.separator.bottomAnchor constant:LAUNCH_CELL_VERT_GAP],
+                                              [self.launchSite.widthAnchor constraintEqualToConstant:width],
+                                              [self.launchSite.heightAnchor constraintEqualToConstant:LAUNCH_CELL_HEIGHT-(2*LAUNCH_CELL_VERT_GAP)-missionTopOffset-LAUNCH_CELL_MISSION_HEIGHT-10],
                                               nil]];
     
     

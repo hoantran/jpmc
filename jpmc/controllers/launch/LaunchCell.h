@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 extern CGFloat const LAUNCH_CELL_HEIGHT;
 
 @interface LaunchCell : UITableViewCell
-- (void)setLaunchInfo:(LaunchModel *)launch row:(NSInteger)row;
+-(void)setLaunchInfo:(LaunchModel *)launch row:(NSInteger)row iconFileName:(NSString *)iconFileName;
 @end
 
 NS_ASSUME_NONNULL_END
