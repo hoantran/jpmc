@@ -10,7 +10,6 @@
 // A few more features would enhance the user experience greatly:
 // * Pull-to-refresh would pull down the latest data
 // * An activity indcator tells user that it's busy
-// * A detail view of a lanch window when user taps on a mission row is mostly probably expected
 // * Pictures of a mission (even canned one flickr ) would be much more visually appealing.
 // * Custom cells for each mission row would be a must to emphasize important info and UI enhancements
 // * When a filter is applied, the title should reflect that. e.g. "All Launches", "2012 Launches", "03/05/2014 - 09/06/2017" etc.
