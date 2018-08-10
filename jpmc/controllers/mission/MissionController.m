@@ -20,7 +20,7 @@ CGFloat const VERT_OFFSET            = 15;
 //@property (strong, nonatomic) UIView *separator;
 @property (strong, nonatomic) UILabel *launchSite;
 @property (strong, nonatomic) UILabel *missionDate;
-@property (strong, nonatomic) UILabel *details;
+@property (strong, nonatomic) UITextView *details;
 @property (strong, nonatomic) NSArray *bkgColors;
 @end
 
@@ -55,7 +55,7 @@ CGFloat const VERT_OFFSET            = 15;
     self.icon.contentMode = UIViewContentModeScaleAspectFill;
     self.icon.layer.cornerRadius = height / 2;
     self.icon.layer.masksToBounds = YES;
-    self.icon.layer.borderWidth = 3.0f;
+    self.icon.layer.borderWidth = 6.0f;
     self.icon.layer.borderColor = [UIColor whiteColor].CGColor;
     self.icon.translatesAutoresizingMaskIntoConstraints = NO;
     self.icon.backgroundColor = [self.bkgColors objectAtIndex:(bkgIndex % self.bkgColors.count)];
@@ -127,15 +127,16 @@ CGFloat const VERT_OFFSET            = 15;
 }
 
 -(void)setupDetails:(int)bkgIndex {
-    self.details = [[UILabel alloc] initWithFrame:CGRectZero];
+    self.details = [[UITextView alloc] initWithFrame:CGRectZero];
     self.details.text = @"";
     self.details.textAlignment = NSTextAlignmentCenter;
     self.details.font = [UIFont systemFontOfSize:18];
     self.details.textColor = [UIColor blackColor];
     self.details.translatesAutoresizingMaskIntoConstraints = NO;
     self.details.backgroundColor = [self.bkgColors objectAtIndex:(bkgIndex % self.bkgColors.count)];
-    self.details.numberOfLines = 0;
-    [self.details sizeToFit];
+    self.details.userInteractionEnabled = YES;
+    self.details.editable = NO;
+    self.details.scrollsToTop = YES;
     [self.view addSubview:self.details];
     
     [self.details setHidden:YES];

@@ -13,8 +13,6 @@
 @implementation LaunchViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Mission on row [%lu]", [indexPath row]);
-    
     if (self.launcherDelegate != nil && [self.launcherDelegate respondsToSelector:@selector(navigator)]) {
         // should have one place to get data being presented
         MissionController *controller = [[MissionController alloc]init];

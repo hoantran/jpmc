@@ -71,7 +71,6 @@
 }
 
 -(void)dateChanged {
-    NSLog(@"date changed");
 }
 
 -(void)setTitle:(NSString *)title{

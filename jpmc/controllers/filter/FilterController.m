@@ -43,7 +43,6 @@ FilterResult previousFilter;
 -(instancetype)init:(FilterResult) prevFilter {
     if(self = [super init]){
         previousFilter = prevFilter;
-        NSLog(@"filter from: %@", previousFilter.from);
     }
     return self;
 }
@@ -177,11 +176,6 @@ FilterResult previousFilter;
     }
 
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)dealloc
-{
-    NSLog(@"DEALLOC for FilterController");
 }
 
 @end

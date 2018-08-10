@@ -52,7 +52,6 @@ NSString *const kCellIdentifier = @"MissionLaunchCell";
 
 - (void)updateLaunches:(NSArray *)launches {
     if (launches != nil) {
-        NSLog(@"updating launches");
         self.launches = launches;
     }
 }
