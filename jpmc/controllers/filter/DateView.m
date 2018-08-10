@@ -40,7 +40,7 @@
     
     [self addSubview:self.titleField];
     [NSLayoutConstraint activateConstraints: [NSArray arrayWithObjects:
-                                              [self.titleField.leftAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.leftAnchor constant:5],
+                                              [self.titleField.leftAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.leftAnchor constant:15],
                                               [self.titleField.centerYAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.centerYAnchor],
                                               [self.titleField.widthAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.widthAnchor constant:-100],
                                               [self.titleField.heightAnchor constraintEqualToConstant:40],
@@ -58,7 +58,7 @@
     
     [self addSubview:self.input];
     [NSLayoutConstraint activateConstraints: [NSArray arrayWithObjects:
-                                              [self.input.rightAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.rightAnchor constant:-5],
+                                              [self.input.rightAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.rightAnchor constant:-15],
                                               [self.input.centerYAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.centerYAnchor],
                                               [self.input.widthAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.widthAnchor constant:-100],
                                               [self.input.heightAnchor constraintEqualToConstant:40],
@@ -82,6 +82,9 @@
     return self.input.text;
 }
 
+-(void)setDate:(NSString*)date{
+    self.input.text = date;
+}
 
 @end
 

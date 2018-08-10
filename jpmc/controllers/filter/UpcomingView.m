@@ -32,14 +32,14 @@
 
 -(void)setupTitle{
     self.title = [[UILabel alloc]init];
-    self.title.text = @"Upcoming launches";
+    self.title.text = @"UPCOMING";
     self.title.textAlignment = NSTextAlignmentLeft;
     self.title.font = [UIFont systemFontOfSize:16];
     self.title.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self addSubview:self.title];
     [NSLayoutConstraint activateConstraints: [NSArray arrayWithObjects:
-                                              [self.title.leftAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.leftAnchor constant:5],
+                                              [self.title.leftAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.leftAnchor constant:15],
                                               [self.title.centerYAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.centerYAnchor],
                                               [self.title.widthAnchor constraintEqualToConstant:200],
                                               [self.title.heightAnchor constraintEqualToConstant:40],
@@ -50,7 +50,7 @@
     self.upcoming = [[UISwitch alloc]initWithFrame:CGRectZero];
     self.upcoming.translatesAutoresizingMaskIntoConstraints = NO;
     self.upcoming.onTintColor = [UIColor greenColor];
-    [self.upcoming setOn:NO];
+    [self setUpcomingTo:NO];
     self.upcoming.onTintColor = [UIColor greenColor];
     
     [self addSubview:self.upcoming];
@@ -60,6 +60,10 @@
                                               [self.upcoming.widthAnchor constraintEqualToConstant:100],
                                               [self.upcoming.heightAnchor constraintEqualToConstant:40],
                                               nil]];
+}
+
+-(void)setUpcomingTo:(BOOL)flag {
+    [self.upcoming setOn:flag];
 }
 
 -(BOOL)isOn {

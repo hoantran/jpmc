@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UpcomingView : UIView
 -(BOOL)isOn;
+-(void)setUpcomingTo:(BOOL)flag;
 @end
 
 NS_ASSUME_NONNULL_END

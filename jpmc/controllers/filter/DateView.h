@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DateView : UIView<UITextFieldDelegate>
 -(void)setTitle:(NSString *)title;
 -(NSString*)getDate;
+-(void)setDate:(NSString*)date;
+
 @end
 
 NS_ASSUME_NONNULL_END

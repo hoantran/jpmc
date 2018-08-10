@@ -26,16 +26,27 @@
 #import "FilterController.h"
 #import "UpcomingView.h"
 #import "DateView.h"
+#import "UIColor+Hex.h"
 
 
 @interface FilterController ()
-@property (nonatomic, retain) NSArray *years;
 @property (nonatomic, strong) UpcomingView *upcoming;
 @property (nonatomic, strong) DateView *from;
 @property (nonatomic, strong) DateView *to;
+@property (nonatomic, strong) UIButton *reset;
+@property (nonatomic, strong) UIButton *search;
 @end
 
 @implementation FilterController
+FilterResult previousFilter;
+
+-(instancetype)init:(FilterResult) prevFilter {
+    if(self = [super init]){
+        previousFilter = prevFilter;
+        NSLog(@"filter from: %@", previousFilter.from);
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,14 +56,19 @@
     [self setupUpcoming];
     [self setupFrom];
     [self setupTo];
-    
-    self.years = [[NSArray alloc] initWithObjects:@"Anytime", @"2017", @"2018", nil];
+    [self setupResetButton];
+    [self setupSearchButton];
+    [self refreshView];
 }
 
-
+-(void)refreshView {
+    [self.upcoming setUpcomingTo:previousFilter.upcoming];
+    [self.from setDate:previousFilter.from];
+    [self.to setDate:previousFilter.to];
+}
 
 -(void)setupNavigation {
-    self.navigationItem.title = @"Filter";
+    self.navigationItem.title = @"FILTER";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelTapped)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchTapped)];
 }
@@ -71,7 +87,7 @@
 
 -(void)setupFrom {
     self.from = [[DateView alloc]initWithFrame:CGRectZero];
-    [self.from setTitle:@"From"];
+    [self.from setTitle:@"FROM"];
     self.from.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.from];
     [NSLayoutConstraint activateConstraints: [NSArray arrayWithObjects:
@@ -84,7 +100,7 @@
 
 -(void)setupTo {
     self.to = [[DateView alloc]initWithFrame:CGRectZero];
-    [self.to setTitle:@"To"];
+    [self.to setTitle:@"TO"];
     self.to.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.to];
     [NSLayoutConstraint activateConstraints: [NSArray arrayWithObjects:
@@ -94,6 +110,58 @@
                                               [self.to.heightAnchor constraintEqualToConstant:50],
                                               nil]];
 }
+
+-(void)setupResetButton {
+    self.reset = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.reset.translatesAutoresizingMaskIntoConstraints = false;
+    self.reset.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    [self.reset setTitle:@"RESET" forState:UIControlStateNormal];
+    self.reset.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    [self.reset setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    self.reset.layer.borderWidth = 1.0f;
+    self.reset.layer.borderColor = [UIColor colorFromHexCode:@"FF7776"].CGColor;
+    self.reset.layer.cornerRadius = 5;
+
+    [self.reset addTarget:self action:@selector(resetTapped) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:self.reset];
+    [NSLayoutConstraint activateConstraints: [NSArray arrayWithObjects:
+                                              [self.reset.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.centerXAnchor],
+                                              [self.reset.topAnchor constraintEqualToAnchor:self.to.bottomAnchor constant:20],
+                                              [self.reset.widthAnchor constraintEqualToConstant:100],
+                                              [self.reset.heightAnchor constraintEqualToConstant:40],
+                                              nil]];
+}
+
+-(void)resetTapped {
+    previousFilter.upcoming = NO;
+    previousFilter.from = @"";
+    previousFilter.to = @"";
+    [self refreshView];
+}
+
+-(void)setupSearchButton {
+    self.search = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.search.translatesAutoresizingMaskIntoConstraints = false;
+    self.search.titleLabel.font = [UIFont boldSystemFontOfSize:19];
+    [self.search setTitle:@"SEARCH" forState:UIControlStateNormal];
+    self.search.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    [self.search setTitleColor:[UIColor colorFromHexCode:@"00B510"] forState:UIControlStateNormal];
+    self.search.layer.borderWidth = 1.0f;
+    self.search.layer.borderColor = [UIColor colorFromHexCode:@"00A20E"].CGColor;
+    self.search.layer.cornerRadius = 5;
+    
+    [self.search addTarget:self action:@selector(searchTapped) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:self.search];
+    [NSLayoutConstraint activateConstraints: [NSArray arrayWithObjects:
+                                              [self.search.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.centerXAnchor],
+                                              [self.search.topAnchor constraintEqualToAnchor:self.reset.bottomAnchor constant:30],
+                                              [self.search.widthAnchor constraintEqualToConstant:100],
+                                              [self.search.heightAnchor constraintEqualToConstant:60],
+                                              nil]];
+}
+
 
 -(void)cancelTapped {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -105,11 +173,15 @@
         result.from = [self.from getDate];
         result.to = [self.to getDate];
         result.upcoming = [self.upcoming isOn];
-        [self.filterResultDelegate filterDidComplete:&result];
+        [self.filterResultDelegate filterDidComplete:result];
     }
 
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)dealloc
+{
+    NSLog(@"DEALLOC for FilterController");
+}
 
 @end

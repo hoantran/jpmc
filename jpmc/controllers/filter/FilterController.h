@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FilterController : UIViewController
 @property (nonatomic, weak) id<FilterResultReceiver> filterResultDelegate;
+-(instancetype)init:(FilterResult) prevFilter;
 @end
 
 NS_ASSUME_NONNULL_END

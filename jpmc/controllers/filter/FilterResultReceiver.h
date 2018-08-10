@@ -18,7 +18,7 @@ typedef struct {
 
 
 @protocol FilterResultReceiver <NSObject>
--(void)filterDidComplete:(FilterResult*)result;
+-(void)filterDidComplete:(FilterResult)result;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -36,14 +36,26 @@
 
 @implementation LaunchController
 RestService *svr;
+FilterResult filterRequest;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Launches";
     
+    filterRequest.upcoming = NO;
+    filterRequest.from = @"";
+    filterRequest.to = @"";
+    
+    [self setupLaunchCount];
     [self setupFilterButton];
     [self setupMainView];
     [self pullDownAllLaunches];
+}
+
+
+-(void)setupLaunchCount {
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.leftBarButtonItem.enabled = NO;
 }
 
 - (void) setupFilterButton {
@@ -96,14 +108,16 @@ RestService *svr;
 }
 
 -(void)updateMainView:(NSArray* _Nonnull)launches {
+//    [self postLaunchCount:1];
     [self.mainViewDatasource updateLaunches:launches];
     dispatch_async(dispatch_get_main_queue(), ^{
+        self.navigationItem.leftBarButtonItem.title = [NSString stringWithFormat:@"(%lu)",launches.count];
         [self.mainView reloadData];
     });
 }
 
 -(void)handleFilterTapped {
-    FilterController *controller = [[FilterController alloc]init];
+    FilterController *controller = [[FilterController alloc]init:filterRequest];
     UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:controller];
     controller.filterResultDelegate = self;
     [self presentViewController:navController animated:YES completion:^{
@@ -173,17 +187,18 @@ RestService *svr;
     return filteredLaunches;
 }
 
--(void)filterDidComplete:(FilterResult*)result {
+-(void)filterDidComplete:(FilterResult)result {
+    filterRequest = result;
     NSArray *filteredLaunches = self.launches;
     
-    if( result->upcoming ){
+    if( result.upcoming ){
         filteredLaunches = [LaunchModel filter:filteredLaunches byKind:LaunchFilterbyUpcoming];
     }
     
-    NSArray *filtered = [self filteredByYear:filteredLaunches from:result->from to:result->to];
+    NSArray *filtered = [self filteredByYear:filteredLaunches from:result.from to:result.to];
     
     if (filtered == nil) {
-        filtered = [self filteredByDate:filteredLaunches from:result->from to:result->to];
+        filtered = [self filteredByDate:filteredLaunches from:result.from to:result.to];
         if (filtered != nil) {
             filteredLaunches = filtered;
         }
