@@ -12,12 +12,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol MissionLauncher <NSObject>
--(UINavigationController *)navigator;
+@protocol MissionPresenter <NSObject>
+-(void)present:(UIViewController*)controller;
 @end
 
-@interface LaunchViewDelegate : NSObject<UITableViewDelegate>
-@property (nonatomic, weak) id<MissionLauncher> launcherDelegate;
+@interface LaunchViewDelegate : NSObject<UITableViewDelegate,UIViewControllerTransitioningDelegate>
+@property (nonatomic, weak) id<MissionPresenter> presentDelegate;
 @property (nonatomic, weak) id<MissionInfoProvider> missionInfoProvider;
 @end
 

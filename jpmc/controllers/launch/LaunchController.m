@@ -81,7 +81,7 @@ FilterResult filterRequest;
     self.mainViewDatasource = [[LaunchViewDataSource alloc] init];
     self.mainView.dataSource = self.mainViewDatasource;
     self.mainViewDelegate = [[LaunchViewDelegate alloc] init];
-    self.mainViewDelegate.launcherDelegate = self;
+    self.mainViewDelegate.presentDelegate = self;
     self.mainView.delegate = self.mainViewDelegate;
     self.mainViewDelegate.missionInfoProvider = self.mainViewDatasource;
     
@@ -213,5 +213,10 @@ FilterResult filterRequest;
     return self.navigationController;
 }
 
+-(void)present:(UIViewController *)controller{
+    [self presentViewController:controller animated:YES completion:NULL];
+}
+
 @end
+
 

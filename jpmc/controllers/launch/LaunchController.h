@@ -10,7 +10,7 @@
 #import "FilterResultReceiver.h"
 #import "LaunchViewDelegate.h"
 
-@interface LaunchController : UIViewController<FilterResultReceiver, MissionLauncher>
+@interface LaunchController : UIViewController<FilterResultReceiver, MissionPresenter>
 
 
 @end

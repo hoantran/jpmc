@@ -66,7 +66,6 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    NSLog(@"Return");
     return YES;
 }
 
