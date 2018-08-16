@@ -58,6 +58,7 @@
     [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:layout];
     self.collectionView.translatesAutoresizingMaskIntoConstraints = false;
+    [self.collectionView setPagingEnabled:YES];
     
     self.collectionViewDelegate = [[MissionCollectionViewDelegate alloc]init];
     self.collectionViewDataSource = [[MissionCollectionViewDataSource alloc]init];
