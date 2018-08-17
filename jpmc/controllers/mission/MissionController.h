@@ -11,14 +11,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol MissionInfoProvider <NSObject>
--(LaunchModel*)launchInfo:(NSInteger)row;
--(NSString*)iconFileName:(NSInteger)row;
-@end
-
-@interface MissionController : UIViewController
-@property (nonatomic, weak) id<MissionInfoProvider> missionInfoProvider;
-@property (nonatomic) NSInteger row;
-@end
+//@protocol MissionInfoProvider <NSObject>
+//-(LaunchModel*)launchInfo:(NSInteger)row;
+//-(NSString*)iconFileName:(NSInteger)row;
+//@end
+//
+//@interface MissionController : UIViewController
+//@property (nonatomic, weak) id<MissionInfoProvider> missionInfoProvider;
+//@property (nonatomic) NSInteger row;
+//@end
 
 NS_ASSUME_NONNULL_END

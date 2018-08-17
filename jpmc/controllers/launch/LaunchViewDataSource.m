@@ -10,7 +10,7 @@
 #import "LaunchModel.h"
 #import "LaunchCell.h"
 
-NSString *const kCellIdentifier = @"MissionLaunchCell";
+NSString *const MISSION_LAUNCH_CELL_ID = @"MissionLaunchCell";
 
 @interface LaunchViewDataSource ()
 @property (strong, nonatomic) NSArray* launches;
@@ -37,14 +37,14 @@ NSString *const kCellIdentifier = @"MissionLaunchCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LaunchCell *cell = (LaunchCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+    LaunchCell *cell = (LaunchCell *)[tableView dequeueReusableCellWithIdentifier:MISSION_LAUNCH_CELL_ID];
     if (cell == nil) {
-        cell = [[LaunchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier];
+        cell = [[LaunchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MISSION_LAUNCH_CELL_ID];
     }
     
-    LaunchModel *launch = [self launchInfo:indexPath.row];
+    LaunchModel *launch = [self launchInfoFor:indexPath.row];
     if (launch != nil) {
-        [cell setLaunchInfo:launch row:indexPath.row iconFileName:[self iconFileName:indexPath.row]];
+        [cell setLaunchInfo:launch row:indexPath.row iconFileName:[self iconFileNameFor:indexPath.row]];
     }
 
     return cell;
@@ -60,7 +60,7 @@ NSString *const kCellIdentifier = @"MissionLaunchCell";
     return row >= 0 && row < self.launches.count;
 }
 
-- (NSString *)iconFileName:(NSInteger)row {
+- (NSString *)iconFileNameFor:(NSInteger)row {
     if([self isValidRowNumber:row]) {
         return [NSString stringWithFormat:@"spacex.%lu.jpg",(row % 3)+1];
     }else{
@@ -68,11 +68,20 @@ NSString *const kCellIdentifier = @"MissionLaunchCell";
     }
 }
 
-- (LaunchModel *)launchInfo:(NSInteger)row {
+- (LaunchModel *)launchInfoFor:(NSInteger)row {
     if([self isValidRowNumber:row]){
         return [self.launches objectAtIndex:row];
     } else {
         return nil;
+    }
+}
+
+
+-(NSUInteger)rowCount {
+    if (self.launches == nil) {
+        return 0;
+    } else {
+        return self.launches.count;
     }
 }
 

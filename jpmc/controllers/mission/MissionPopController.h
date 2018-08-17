@@ -8,11 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "TitleView.h"
-#import "MissionController.h"
+#import "MissionCollectionViewDelegate.h"
+#import "LaunchModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MissionPopController : UIViewController<TapDelegate>
+@protocol MissionInfoProvider <NSObject>
+-(LaunchModel *)launchInfoFor:(NSInteger)row;
+-(NSString *)iconFileNameFor:(NSInteger)row;
+-(NSUInteger)rowCount;
+@end
+
+
+@interface MissionPopController : UIViewController<TapDelegate, ItemChangeListener>
 @property (nonatomic, weak) id<MissionInfoProvider> missionInfoProvider;
 @property (nonatomic) NSInteger row;
 @end

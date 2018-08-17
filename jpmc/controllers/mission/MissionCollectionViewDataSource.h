@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "MissionPopController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MissionCollectionViewDataSource : NSObject<UICollectionViewDataSource>
+extern NSString *const MISSION_CELL_ID;
 
+@interface MissionCollectionViewDataSource : NSObject<UICollectionViewDataSource>
+@property (nonatomic, weak) id<MissionInfoProvider> missionInfoProvider;
 @end
 
 NS_ASSUME_NONNULL_END

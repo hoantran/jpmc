@@ -11,6 +11,7 @@
 #import "UIColor+Hex.h"
 #import "MissionCollectionViewDelegate.h"
 #import "MissionCollectionViewDataSource.h"
+#import "MissionCell.h"
 
 CGFloat const TITLE_VIEW_HEIGHT = 46;
 
@@ -30,15 +31,11 @@ CGFloat const TITLE_VIEW_HEIGHT = 46;
     self.view.backgroundColor = [UIColor colorFromHexCode:@"D8FAFF"];
     [self setupTitleView];
     [self setupCollectionView];
-    NSLog(@"viewDidLoad size:%@", NSStringFromCGRect(self.view.frame));
+    [self item:(int)self.row];
 }
 
 -(void)handleTap {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        CGRect rect = self.collectionView.frame;
-//        self.collectionView.frame = CGRectMake(rect.origin.x - 100, rect.origin.y, rect.size.width, rect.size.height);
-//    });
 }
 
 -(void)setupTitleView {
@@ -63,11 +60,18 @@ CGFloat const TITLE_VIEW_HEIGHT = 46;
     [self.collectionView setPagingEnabled:YES];
     
     self.collectionViewDelegate = [[MissionCollectionViewDelegate alloc]init];
-    self.collectionViewDataSource = [[MissionCollectionViewDataSource alloc]init];
+    self.collectionViewDelegate.itemChangeListener = self;
     [self.collectionView setDelegate:self.collectionViewDelegate];
+    
+    self.collectionViewDataSource = [[MissionCollectionViewDataSource alloc]init];
+    self.collectionViewDataSource.missionInfoProvider = self.missionInfoProvider;
     [self.collectionView setDataSource:self.collectionViewDataSource];
+    
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cellID"];
     self.collectionView.backgroundColor = [UIColor colorFromHexCode:@"D8FAFF"];
+    
+    [self.collectionView registerClass:MissionCell.self forCellWithReuseIdentifier:MISSION_CELL_ID];
+    [self.collectionView setShowsHorizontalScrollIndicator:NO];
     
     [self.view addSubview:self.collectionView];
     [NSLayoutConstraint activateConstraints: [NSArray arrayWithObjects:
@@ -76,6 +80,23 @@ CGFloat const TITLE_VIEW_HEIGHT = 46;
                                               [self.collectionView.widthAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.widthAnchor],
                                               [self.collectionView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor],
                                               nil]];
+}
+
+-(void)item:(int)item {
+    if (self.missionInfoProvider != nil && [self.missionInfoProvider respondsToSelector:@selector(launchInfoFor:)]) {
+        LaunchModel *launch = [self.missionInfoProvider launchInfoFor:item];
+        if (launch != nil && launch.mission_name != nil) {
+            NSString *missionName = [launch.mission_name uppercaseString];
+            int lengthLimit = 15;
+            if (missionName.length > lengthLimit)
+                missionName = [missionName substringToIndex:lengthLimit];
+            [self.titleView setTitle:missionName];
+        }
+    }
+}
+
+-(void)dealloc {
+    NSLog(@"Pop DEALLOC");
 }
 
 @end

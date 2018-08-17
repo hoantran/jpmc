@@ -23,6 +23,7 @@
 		3B773C952122BEA2007EECBE /* TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B773C942122BEA2007EECBE /* TitleView.m */; };
 		3B773C982122D221007EECBE /* MissionCollectionViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B773C972122D221007EECBE /* MissionCollectionViewDelegate.m */; };
 		3B773C9E2122D676007EECBE /* MissionCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B773C9D2122D676007EECBE /* MissionCollectionViewDataSource.m */; };
+		3B773CAA2126B0D0007EECBE /* MissionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B773CA92126B0D0007EECBE /* MissionCell.m */; };
 		3B9610C8211B6B8E00EECE86 /* MissionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9610C7211B6B8E00EECE86 /* MissionController.m */; };
 		3BB52A6F2118A78B002C81FE /* FilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB52A6E2118A78B002C81FE /* FilterController.m */; };
 		3BB52A722118BC80002C81FE /* UpcomingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB52A712118BC80002C81FE /* UpcomingView.m */; };
@@ -79,6 +80,8 @@
 		3B773C972122D221007EECBE /* MissionCollectionViewDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MissionCollectionViewDelegate.m; sourceTree = "<group>"; };
 		3B773C9C2122D676007EECBE /* MissionCollectionViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MissionCollectionViewDataSource.h; sourceTree = "<group>"; };
 		3B773C9D2122D676007EECBE /* MissionCollectionViewDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MissionCollectionViewDataSource.m; sourceTree = "<group>"; };
+		3B773CA82126B0D0007EECBE /* MissionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MissionCell.h; sourceTree = "<group>"; };
+		3B773CA92126B0D0007EECBE /* MissionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MissionCell.m; sourceTree = "<group>"; };
 		3B9610C6211B6B8E00EECE86 /* MissionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MissionController.h; sourceTree = "<group>"; };
 		3B9610C7211B6B8E00EECE86 /* MissionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MissionController.m; sourceTree = "<group>"; };
 		3BB52A6D2118A78B002C81FE /* FilterController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterController.h; sourceTree = "<group>"; };
@@ -198,6 +201,8 @@
 				3B773C942122BEA2007EECBE /* TitleView.m */,
 				3B773C8D212209CB007EECBE /* ControllerAnimator.h */,
 				3B773C8E212209CB007EECBE /* ControllerAnimator.m */,
+				3B773CA82126B0D0007EECBE /* MissionCell.h */,
+				3B773CA92126B0D0007EECBE /* MissionCell.m */,
 			);
 			path = mission;
 			sourceTree = "<group>";
@@ -433,6 +438,7 @@
 				3B7553AF21163787008655FB /* AppDelegate.m in Sources */,
 				3B50145C21170520000011CE /* LaunchModel.m in Sources */,
 				3BFA278B211687F10008062B /* RestService.m in Sources */,
+				3B773CAA2126B0D0007EECBE /* MissionCell.m in Sources */,
 				3B773C8F212209CB007EECBE /* ControllerAnimator.m in Sources */,
 				3BB52A782118C80B002C81FE /* DateView.m in Sources */,
 			);

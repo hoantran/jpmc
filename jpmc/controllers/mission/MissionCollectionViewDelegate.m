@@ -24,8 +24,17 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    collectionView.frame.size
-    NSLog(@"collection view size:%@", NSStringFromCGRect(collectionView.frame));
     return collectionView.frame.size;
 }
+
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if (self.itemChangeListener != nil && [self.itemChangeListener respondsToSelector:@selector(item:)]) {
+        CGFloat pageWidth = scrollView.frame.size.width;
+        int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+        NSLog(@"Current page -> %d",page);
+        [self.itemChangeListener item:page];
+    }
+}
+
 @end
