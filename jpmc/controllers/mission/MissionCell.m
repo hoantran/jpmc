@@ -8,13 +8,16 @@
 
 #import "MissionCell.h"
 #import "UIColor+Hex.h"
+#import "TitleView.h"
 
 CGFloat const ICON_HEIGHT   = 200;
 CGFloat const TOP_OFFSET    = 15;
 CGFloat const VERT_OFFSET   = 15;
+CGFloat const TITLE_VIEW_HEIGHT = 46;
 
 
 @interface MissionCell ()
+@property (nonatomic, strong) TitleView *titleView;
 @property (strong, nonatomic) UIImageView *icon;
 @property (strong, nonatomic) UILabel *success;
 @property (strong, nonatomic) UILabel *launchSite;
@@ -36,12 +39,26 @@ CGFloat const VERT_OFFSET   = 15;
 }
 
 -(void)setupView {
+    [self setupTitleView];
     int bkgIndex = 0;
     [self setupIcon:++bkgIndex];
     [self setupSuccess:++bkgIndex];
     [self setupLaunchSite:++bkgIndex];
     [self setupMissionDate:++bkgIndex];
     [self setupDetails:++bkgIndex];
+}
+
+-(void)setupTitleView {
+    self.titleView = [[TitleView alloc]initWithFrame:CGRectZero];
+    self.titleView.translatesAutoresizingMaskIntoConstraints = false;
+
+    [self addSubview:self.titleView];
+    [NSLayoutConstraint activateConstraints: [NSArray arrayWithObjects:
+                                              [self.titleView.centerXAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.centerXAnchor],
+                                              [self.titleView.topAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.topAnchor],
+                                              [self.titleView.widthAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.widthAnchor],
+                                              [self.titleView.heightAnchor constraintEqualToConstant:TITLE_VIEW_HEIGHT],
+                                              nil]];
 }
 
 -(void)setupIcon:(int)bkgIndex {
@@ -60,7 +77,7 @@ CGFloat const VERT_OFFSET   = 15;
     
     [NSLayoutConstraint activateConstraints: [NSArray arrayWithObjects:
                                               [self.icon.centerXAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.centerXAnchor],
-                                              [self.icon.topAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.topAnchor constant:TOP_OFFSET],
+                                              [self.icon.topAnchor constraintEqualToAnchor:self.titleView.bottomAnchor constant:TOP_OFFSET],
                                               [self.icon.widthAnchor constraintEqualToConstant:height],
                                               [self.icon.heightAnchor constraintEqualToConstant:height],
                                               nil]];
@@ -147,7 +164,7 @@ CGFloat const VERT_OFFSET   = 15;
 
 - (void)prepareForReuse {
     [super prepareForReuse];
-    // mission title
+    [self.titleView setTitle:@""];
     self.success.text = @"";
     self.launchSite.text = @"";
     self.missionDate.text = @"";
@@ -164,7 +181,7 @@ CGFloat const VERT_OFFSET   = 15;
             int lengthLimit = 15;
             if (missionName.length > lengthLimit)
                 missionName = [missionName substringToIndex:lengthLimit];
-            //            self.navigationItem.title = missionName;
+            [self.titleView setTitle:missionName];
         }
         
         // succes
@@ -173,9 +190,17 @@ CGFloat const VERT_OFFSET   = 15;
             if(successful) {
                 self.success.text = @"launch successful";
                 self.success.textColor = [UIColor colorFromHexCode:@"00B121"];
-            }else{
+            }else {
                 self.success.text = @"launch failed";
                 self.success.textColor = [UIColor redColor];
+            }
+        } else {
+            if (launch.upcoming) {
+                self.success.text = @"upcoming launch";
+                self.success.textColor = [UIColor colorFromHexCode:@"3B49FF"];
+            } else {
+                self.success.text = @"launch status unknown";
+                self.success.textColor = [UIColor grayColor];
             }
         }
         

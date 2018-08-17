@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface MissionPopController : UIViewController<TapDelegate, ItemChangeListener>
+@interface MissionPopController : UIViewController
 @property (nonatomic, weak) id<MissionInfoProvider> missionInfoProvider;
 @property (nonatomic) NSInteger row;
 @end

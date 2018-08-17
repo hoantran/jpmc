@@ -15,14 +15,6 @@ NSString *const MISSION_CELL_ID = @"MissionCell";
 @implementation MissionCollectionViewDataSource
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-//    NSLog(@"cell at [%lu]", indexPath.item);
-//    NSString *cellID = @"cellID";
-//    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
-//
-//    NSArray *colors = [NSArray arrayWithObjects:[UIColor blueColor], [UIColor greenColor], [UIColor brownColor], nil];
-//    cell.backgroundColor = [colors objectAtIndex:indexPath.item % colors.count ];
-//
-//    return cell;
     MissionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:MISSION_CELL_ID forIndexPath:indexPath];
     if (cell == nil) {
         cell = [[MissionCell alloc]initWithFrame:CGRectZero];

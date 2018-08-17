@@ -27,13 +27,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.presentDelegate != nil && [self.presentDelegate respondsToSelector:@selector(present:)]) {
-        // should have one place to get data being presented
-//        MissionController *controller = [[MissionController alloc]init];
-//        controller.missionInfoProvider = self.missionInfoProvider;
-//        controller.row = indexPath.row;
-//        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//        [[self.launcherDelegate navigator] pushViewController:controller animated:YES];
-        
         MissionPopController *popController = [[MissionPopController alloc]init];
         popController.transitioningDelegate = self;
         popController.missionInfoProvider = self.missionInfoProvider;

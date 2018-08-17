@@ -10,12 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol TapDelegate <NSObject>
--(void)handleTap;
-@end
-
 @interface TitleView : UIView
-@property (nonatomic, weak) id<TapDelegate> tapDelegate;
 -(void)setTitle:(NSString *)newTitle;
 @end
 

@@ -13,11 +13,11 @@
 #import "MissionCollectionViewDataSource.h"
 #import "MissionCell.h"
 
-CGFloat const TITLE_VIEW_HEIGHT = 46;
-
+CGFloat const BUTTON_HEIGHT = 40;
+CGFloat const X_FONT_SIZE   = 34;
 
 @interface MissionPopController ()
-@property (nonatomic, strong) TitleView *titleView;
+@property (nonatomic, strong) UIButton *closeButton;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) MissionCollectionViewDelegate *collectionViewDelegate;
 @property (nonatomic, strong) MissionCollectionViewDataSource *collectionViewDataSource;
@@ -29,26 +29,39 @@ CGFloat const TITLE_VIEW_HEIGHT = 46;
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor colorFromHexCode:@"D8FAFF"];
-    [self setupTitleView];
     [self setupCollectionView];
-    [self item:(int)self.row];
+    [self setupCloseButton];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.row inSection:0];
+    [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
 }
 
 -(void)handleTap {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)setupTitleView {
-    self.titleView = [[TitleView alloc]initWithFrame:CGRectZero];
-    self.titleView.translatesAutoresizingMaskIntoConstraints = false;
-    self.titleView.tapDelegate = self;
+-(void)setupCloseButton {
+    self.closeButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.closeButton.translatesAutoresizingMaskIntoConstraints = false;
+    self.closeButton.titleLabel.font = [UIFont boldSystemFontOfSize:X_FONT_SIZE];
+    [self.closeButton setTitle:@"X" forState:UIControlStateNormal];
+    self.closeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    [self.closeButton setTitleColor:[UIColor colorFromHexCode:@"FF8081"] forState:UIControlStateNormal];
+    self.closeButton.layer.borderWidth = 1.0f;
+    self.closeButton.layer.borderColor = [UIColor colorFromHexCode:@"FF7776"].CGColor;
+    self.closeButton.layer.cornerRadius = BUTTON_HEIGHT/2;
     
-    [self.view addSubview:self.titleView];
+    [self.closeButton addTarget:self action:@selector(handleTap) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:self.closeButton];
     [NSLayoutConstraint activateConstraints: [NSArray arrayWithObjects:
-                                              [self.titleView.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.centerXAnchor],
-                                              [self.titleView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor],
-                                              [self.titleView.widthAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.widthAnchor],
-                                              [self.titleView.heightAnchor constraintEqualToConstant:TITLE_VIEW_HEIGHT],
+                                              [self.closeButton.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:3],
+                                              [self.closeButton.rightAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.rightAnchor constant:-20],
+                                              [self.closeButton.widthAnchor constraintEqualToConstant:BUTTON_HEIGHT],
+                                              [self.closeButton.heightAnchor constraintEqualToConstant:BUTTON_HEIGHT],
                                               nil]];
 }
 
@@ -60,7 +73,6 @@ CGFloat const TITLE_VIEW_HEIGHT = 46;
     [self.collectionView setPagingEnabled:YES];
     
     self.collectionViewDelegate = [[MissionCollectionViewDelegate alloc]init];
-    self.collectionViewDelegate.itemChangeListener = self;
     [self.collectionView setDelegate:self.collectionViewDelegate];
     
     self.collectionViewDataSource = [[MissionCollectionViewDataSource alloc]init];
@@ -76,27 +88,10 @@ CGFloat const TITLE_VIEW_HEIGHT = 46;
     [self.view addSubview:self.collectionView];
     [NSLayoutConstraint activateConstraints: [NSArray arrayWithObjects:
                                               [self.collectionView.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.centerXAnchor],
-                                              [self.collectionView.topAnchor constraintEqualToAnchor:self.titleView.bottomAnchor],
+                                              [self.collectionView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor],
                                               [self.collectionView.widthAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.widthAnchor],
                                               [self.collectionView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor],
                                               nil]];
-}
-
--(void)item:(int)item {
-    if (self.missionInfoProvider != nil && [self.missionInfoProvider respondsToSelector:@selector(launchInfoFor:)]) {
-        LaunchModel *launch = [self.missionInfoProvider launchInfoFor:item];
-        if (launch != nil && launch.mission_name != nil) {
-            NSString *missionName = [launch.mission_name uppercaseString];
-            int lengthLimit = 15;
-            if (missionName.length > lengthLimit)
-                missionName = [missionName substringToIndex:lengthLimit];
-            [self.titleView setTitle:missionName];
-        }
-    }
-}
-
--(void)dealloc {
-    NSLog(@"Pop DEALLOC");
 }
 
 @end
