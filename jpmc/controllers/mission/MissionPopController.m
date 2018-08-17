@@ -12,6 +12,8 @@
 #import "MissionCollectionViewDelegate.h"
 #import "MissionCollectionViewDataSource.h"
 
+CGFloat const TITLE_VIEW_HEIGHT = 46;
+
 
 @interface MissionPopController ()
 @property (nonatomic, strong) TitleView *titleView;
@@ -49,7 +51,7 @@
                                               [self.titleView.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.centerXAnchor],
                                               [self.titleView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor],
                                               [self.titleView.widthAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.widthAnchor],
-                                              [self.titleView.heightAnchor constraintEqualToConstant:50],
+                                              [self.titleView.heightAnchor constraintEqualToConstant:TITLE_VIEW_HEIGHT],
                                               nil]];
 }
 
